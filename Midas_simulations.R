@@ -27,7 +27,6 @@ filtered_cohort <- filtered_cohort / matrix(rep(col_sums, each = nrow(filtered_c
 fit <- MIDAS::Midas.setup(t(filtered_cohort), n.break.ties = 100, fit.beta = F)
 
 simulation <- MIDAS::Midas.modify(fit,
-                                  #lib.size = sample(1, size=190, replace=T), 
                                   mean.rel.abund = NULL, 
                                   taxa.1.prop = NULL)
 
