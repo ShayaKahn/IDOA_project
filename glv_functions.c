@@ -4,12 +4,12 @@
 {
     "distutils": {
         "depends": [],
-        "name": "glv_functions",
+        "name": "GLV_functions",
         "sources": [
-            "glv_functions.pyx"
+            "GLV_functions.pyx"
         ]
     },
-    "module_name": "glv_functions"
+    "module_name": "GLV_functions"
 }
 END: Cython Metadata */
 
@@ -1086,8 +1086,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__glv_functions
-#define __PYX_HAVE_API__glv_functions
+#define __PYX_HAVE__GLV_functions
+#define __PYX_HAVE_API__GLV_functions
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -1385,7 +1385,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "glv_functions.pyx",
+  "GLV_functions.pyx",
   "<stringsource>",
   "__init__.cython-30.pxd",
   "type.pxd",
@@ -2953,7 +2953,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy_7ndarray_4data_data(PyArrayObject *__p
 
 /* Module declarations from "numpy" */
 
-/* Module declarations from "glv_functions" */
+/* Module declarations from "GLV_functions" */
 static PyObject *__pyx_collections_abc_Sequence = 0;
 static PyObject *generic = 0;
 static PyObject *strided = 0;
@@ -2999,11 +2999,11 @@ static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, 
 /* #### Code section: typeinfo ### */
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
 /* #### Code section: before_global_var ### */
-#define __Pyx_MODULE_NAME "glv_functions"
-extern int __pyx_module_is_main_glv_functions;
-int __pyx_module_is_main_glv_functions = 0;
+#define __Pyx_MODULE_NAME "GLV_functions"
+extern int __pyx_module_is_main_GLV_functions;
+int __pyx_module_is_main_GLV_functions = 0;
 
-/* Implementation of "glv_functions" */
+/* Implementation of "GLV_functions" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_sum;
@@ -3112,8 +3112,8 @@ static const char __pyx_k_is_coroutine[] = "_is_coroutine";
 static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
 static const char __pyx_k_stringsource[] = "<stringsource>";
 static const char __pyx_k_version_info[] = "version_info";
+static const char __pyx_k_GLV_functions[] = "GLV_functions";
 static const char __pyx_k_class_getitem[] = "__class_getitem__";
-static const char __pyx_k_glv_functions[] = "glv_functions";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_AssertionError[] = "AssertionError";
 static const char __pyx_k_View_MemoryView[] = "View.MemoryView";
@@ -3122,7 +3122,7 @@ static const char __pyx_k_collections_abc[] = "collections.abc";
 static const char __pyx_k_dtype_is_object[] = "dtype_is_object";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
-static const char __pyx_k_glv_functions_pyx[] = "glv_functions.pyx";
+static const char __pyx_k_GLV_functions_pyx[] = "GLV_functions.pyx";
 static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
@@ -3199,8 +3199,8 @@ static void __pyx_memoryviewslice___pyx_pf_15View_dot_MemoryView_16_memoryviewsl
 static PyObject *__pyx_pf___pyx_memoryviewslice___reduce_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf___pyx_memoryviewslice_2__setstate_cython__(CYTHON_UNUSED struct __pyx_memoryviewslice_obj *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_15View_dot_MemoryView___pyx_unpickle_Enum(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, CYTHON_UNUSED double __pyx_v_delta); /* proto */
-static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, double __pyx_v_delta); /* proto */
+static PyObject *__pyx_pf_13GLV_functions_f(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, CYTHON_UNUSED double __pyx_v_delta); /* proto */
+static PyObject *__pyx_pf_13GLV_functions_2event(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, double __pyx_v_delta); /* proto */
 static PyObject *__pyx_tp_new_array(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_Enum(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_tp_new_memoryview(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3290,6 +3290,8 @@ typedef struct {
   PyObject *__pyx_kp_s_Dimension_d_is_not_direct;
   PyObject *__pyx_n_s_Ellipsis;
   PyObject *__pyx_kp_s_Empty_shape_tuple_for_cython_arr;
+  PyObject *__pyx_n_s_GLV_functions;
+  PyObject *__pyx_kp_s_GLV_functions_pyx;
   PyObject *__pyx_n_s_ImportError;
   PyObject *__pyx_kp_s_Incompatible_checksums_0x_x_vs_0;
   PyObject *__pyx_n_s_IndexError;
@@ -3348,8 +3350,6 @@ typedef struct {
   PyObject *__pyx_n_s_fx;
   PyObject *__pyx_kp_u_gc;
   PyObject *__pyx_n_s_getstate;
-  PyObject *__pyx_n_s_glv_functions;
-  PyObject *__pyx_kp_s_glv_functions_pyx;
   PyObject *__pyx_kp_u_got;
   PyObject *__pyx_kp_u_got_differing_extents_in_dimensi;
   PyObject *__pyx_n_s_i;
@@ -3524,6 +3524,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_s_Dimension_d_is_not_direct);
   Py_CLEAR(clear_module_state->__pyx_n_s_Ellipsis);
   Py_CLEAR(clear_module_state->__pyx_kp_s_Empty_shape_tuple_for_cython_arr);
+  Py_CLEAR(clear_module_state->__pyx_n_s_GLV_functions);
+  Py_CLEAR(clear_module_state->__pyx_kp_s_GLV_functions_pyx);
   Py_CLEAR(clear_module_state->__pyx_n_s_ImportError);
   Py_CLEAR(clear_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
   Py_CLEAR(clear_module_state->__pyx_n_s_IndexError);
@@ -3582,8 +3584,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_fx);
   Py_CLEAR(clear_module_state->__pyx_kp_u_gc);
   Py_CLEAR(clear_module_state->__pyx_n_s_getstate);
-  Py_CLEAR(clear_module_state->__pyx_n_s_glv_functions);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_glv_functions_pyx);
   Py_CLEAR(clear_module_state->__pyx_kp_u_got);
   Py_CLEAR(clear_module_state->__pyx_kp_u_got_differing_extents_in_dimensi);
   Py_CLEAR(clear_module_state->__pyx_n_s_i);
@@ -3736,6 +3736,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_s_Dimension_d_is_not_direct);
   Py_VISIT(traverse_module_state->__pyx_n_s_Ellipsis);
   Py_VISIT(traverse_module_state->__pyx_kp_s_Empty_shape_tuple_for_cython_arr);
+  Py_VISIT(traverse_module_state->__pyx_n_s_GLV_functions);
+  Py_VISIT(traverse_module_state->__pyx_kp_s_GLV_functions_pyx);
   Py_VISIT(traverse_module_state->__pyx_n_s_ImportError);
   Py_VISIT(traverse_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
   Py_VISIT(traverse_module_state->__pyx_n_s_IndexError);
@@ -3794,8 +3796,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_fx);
   Py_VISIT(traverse_module_state->__pyx_kp_u_gc);
   Py_VISIT(traverse_module_state->__pyx_n_s_getstate);
-  Py_VISIT(traverse_module_state->__pyx_n_s_glv_functions);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_glv_functions_pyx);
   Py_VISIT(traverse_module_state->__pyx_kp_u_got);
   Py_VISIT(traverse_module_state->__pyx_kp_u_got_differing_extents_in_dimensi);
   Py_VISIT(traverse_module_state->__pyx_n_s_i);
@@ -3976,6 +3976,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_s_Dimension_d_is_not_direct __pyx_mstate_global->__pyx_kp_s_Dimension_d_is_not_direct
 #define __pyx_n_s_Ellipsis __pyx_mstate_global->__pyx_n_s_Ellipsis
 #define __pyx_kp_s_Empty_shape_tuple_for_cython_arr __pyx_mstate_global->__pyx_kp_s_Empty_shape_tuple_for_cython_arr
+#define __pyx_n_s_GLV_functions __pyx_mstate_global->__pyx_n_s_GLV_functions
+#define __pyx_kp_s_GLV_functions_pyx __pyx_mstate_global->__pyx_kp_s_GLV_functions_pyx
 #define __pyx_n_s_ImportError __pyx_mstate_global->__pyx_n_s_ImportError
 #define __pyx_kp_s_Incompatible_checksums_0x_x_vs_0 __pyx_mstate_global->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0
 #define __pyx_n_s_IndexError __pyx_mstate_global->__pyx_n_s_IndexError
@@ -4034,8 +4036,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_fx __pyx_mstate_global->__pyx_n_s_fx
 #define __pyx_kp_u_gc __pyx_mstate_global->__pyx_kp_u_gc
 #define __pyx_n_s_getstate __pyx_mstate_global->__pyx_n_s_getstate
-#define __pyx_n_s_glv_functions __pyx_mstate_global->__pyx_n_s_glv_functions
-#define __pyx_kp_s_glv_functions_pyx __pyx_mstate_global->__pyx_kp_s_glv_functions_pyx
 #define __pyx_kp_u_got __pyx_mstate_global->__pyx_kp_u_got
 #define __pyx_kp_u_got_differing_extents_in_dimensi __pyx_mstate_global->__pyx_kp_u_got_differing_extents_in_dimensi
 #define __pyx_n_s_i __pyx_mstate_global->__pyx_n_s_i
@@ -18701,7 +18701,7 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
   return __pyx_r;
 }
 
-/* "glv_functions.pyx":4
+/* "GLV_functions.pyx":4
  * cimport numpy as np
  * 
  * def f(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
@@ -18710,15 +18710,15 @@ static CYTHON_INLINE NPY_DATETIMEUNIT __pyx_f_5numpy_get_datetime64_unit(PyObjec
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_13glv_functions_1f(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_13GLV_functions_1f(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_13glv_functions_1f = {"f", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_13glv_functions_1f, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_13glv_functions_1f(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_13GLV_functions_1f = {"f", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_13GLV_functions_1f, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_13GLV_functions_1f(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -18833,11 +18833,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_r, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_s, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_A, 1);
-  __Pyx_AddTraceback("glv_functions.f", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("GLV_functions.f", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_13glv_functions_f(__pyx_self, __pyx_v_t, __pyx_v_x, __pyx_v_r, __pyx_v_s, __pyx_v_A, __pyx_v_delta);
+  __pyx_r = __pyx_pf_13GLV_functions_f(__pyx_self, __pyx_v_t, __pyx_v_x, __pyx_v_r, __pyx_v_s, __pyx_v_A, __pyx_v_delta);
 
   /* function exit code */
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_x, 1);
@@ -18848,7 +18848,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, CYTHON_UNUSED double __pyx_v_delta) {
+static PyObject *__pyx_pf_13GLV_functions_f(CYTHON_UNUSED PyObject *__pyx_self, CYTHON_UNUSED double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, CYTHON_UNUSED double __pyx_v_delta) {
   int __pyx_v_n;
   int __pyx_7genexpr__pyx_v_i;
   int __pyx_8genexpr1__pyx_v_p;
@@ -18877,7 +18877,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("f", 0);
 
-  /* "glv_functions.pyx":7
+  /* "GLV_functions.pyx":7
  *     # RHS of the ODE
  *     cdef int i, p
  *     cdef int n = np.size(x)             # <<<<<<<<<<<<<<
@@ -18916,7 +18916,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_n = __pyx_t_5;
 
-  /* "glv_functions.pyx":9
+  /* "GLV_functions.pyx":9
  *     cdef int n = np.size(x)
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[             # <<<<<<<<<<<<<<
@@ -18933,7 +18933,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
     __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
 
-    /* "glv_functions.pyx":10
+    /* "GLV_functions.pyx":10
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])             # <<<<<<<<<<<<<<
@@ -18945,7 +18945,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
     for (__pyx_t_7 = 0; __pyx_t_7 < __pyx_t_6; __pyx_t_7+=1) {
       __pyx_7genexpr__pyx_v_i = __pyx_t_7;
 
-      /* "glv_functions.pyx":9
+      /* "GLV_functions.pyx":9
  *     cdef int n = np.size(x)
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[             # <<<<<<<<<<<<<<
@@ -18998,7 +18998,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
         __pyx_t_13 = PyList_New(0); if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 9, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_13);
 
-        /* "glv_functions.pyx":10
+        /* "GLV_functions.pyx":10
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])             # <<<<<<<<<<<<<<
@@ -19012,7 +19012,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
           __pyx_t_16 = (__pyx_8genexpr1__pyx_v_p != __pyx_7genexpr__pyx_v_i);
           if (__pyx_t_16) {
 
-            /* "glv_functions.pyx":9
+            /* "GLV_functions.pyx":9
  *     cdef int n = np.size(x)
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[             # <<<<<<<<<<<<<<
@@ -19035,7 +19035,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
               __PYX_ERR(0, 9, __pyx_L1_error)
             }
 
-            /* "glv_functions.pyx":10
+            /* "GLV_functions.pyx":10
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])             # <<<<<<<<<<<<<<
@@ -19053,7 +19053,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
               __PYX_ERR(0, 9, __pyx_L1_error)
             }
 
-            /* "glv_functions.pyx":9
+            /* "GLV_functions.pyx":9
  *     cdef int n = np.size(x)
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[             # <<<<<<<<<<<<<<
@@ -19071,7 +19071,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
               __PYX_ERR(0, 10, __pyx_L1_error)
             }
 
-            /* "glv_functions.pyx":10
+            /* "GLV_functions.pyx":10
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])             # <<<<<<<<<<<<<<
@@ -19086,7 +19086,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
         }
       } /* exit inner scope */
 
-      /* "glv_functions.pyx":9
+      /* "GLV_functions.pyx":9
  *     cdef int n = np.size(x)
  * 
  *     return np.array([r[i] * x[i] - s[i] * x[i] ** 2 + sum([A[i, p] * x[             # <<<<<<<<<<<<<<
@@ -19129,7 +19129,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "glv_functions.pyx":4
+  /* "GLV_functions.pyx":4
  * cimport numpy as np
  * 
  * def f(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
@@ -19145,7 +19145,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_13);
   __Pyx_XDECREF(__pyx_t_18);
-  __Pyx_AddTraceback("glv_functions.f", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("GLV_functions.f", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -19153,7 +19153,7 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
   return __pyx_r;
 }
 
-/* "glv_functions.pyx":12
+/* "GLV_functions.pyx":12
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])
  * 
  * def event(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
@@ -19162,15 +19162,15 @@ static PyObject *__pyx_pf_13glv_functions_f(CYTHON_UNUSED PyObject *__pyx_self, 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_13glv_functions_3event(PyObject *__pyx_self, 
+static PyObject *__pyx_pw_13GLV_functions_3event(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_13glv_functions_3event = {"event", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_13glv_functions_3event, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_13glv_functions_3event(PyObject *__pyx_self, 
+static PyMethodDef __pyx_mdef_13GLV_functions_3event = {"event", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_13GLV_functions_3event, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_13GLV_functions_3event(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -19285,11 +19285,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_r, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_s, 1);
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_A, 1);
-  __Pyx_AddTraceback("glv_functions.event", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("GLV_functions.event", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_13glv_functions_2event(__pyx_self, __pyx_v_t, __pyx_v_x, __pyx_v_r, __pyx_v_s, __pyx_v_A, __pyx_v_delta);
+  __pyx_r = __pyx_pf_13GLV_functions_2event(__pyx_self, __pyx_v_t, __pyx_v_x, __pyx_v_r, __pyx_v_s, __pyx_v_A, __pyx_v_delta);
 
   /* function exit code */
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_x, 1);
@@ -19300,7 +19300,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, double __pyx_v_delta) {
+static PyObject *__pyx_pf_13GLV_functions_2event(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_t, __Pyx_memviewslice __pyx_v_x, __Pyx_memviewslice __pyx_v_r, __Pyx_memviewslice __pyx_v_s, __Pyx_memviewslice __pyx_v_A, double __pyx_v_delta) {
   __Pyx_memviewslice __pyx_v_fx = { 0, 0, { 0 }, { 0 }, { 0 } };
   double __pyx_v_max_fx;
   PyObject *__pyx_r = NULL;
@@ -19322,7 +19322,7 @@ static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_s
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("event", 0);
 
-  /* "glv_functions.pyx":14
+  /* "GLV_functions.pyx":14
  * def event(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):
  *     # Event function for the ODE solver
  *     cdef double[:] fx = f(t, x, r, s, A, delta)             # <<<<<<<<<<<<<<
@@ -19375,7 +19375,7 @@ static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_s
   __pyx_t_11.memview = NULL;
   __pyx_t_11.data = NULL;
 
-  /* "glv_functions.pyx":15
+  /* "GLV_functions.pyx":15
  *     # Event function for the ODE solver
  *     cdef double[:] fx = f(t, x, r, s, A, delta)
  *     cdef double max_fx = np.max(np.abs(fx))             # <<<<<<<<<<<<<<
@@ -19439,7 +19439,7 @@ static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_s
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_max_fx = __pyx_t_12;
 
-  /* "glv_functions.pyx":16
+  /* "GLV_functions.pyx":16
  *     cdef double[:] fx = f(t, x, r, s, A, delta)
  *     cdef double max_fx = np.max(np.abs(fx))
  *     return max_fx - delta             # <<<<<<<<<<<<<<
@@ -19451,7 +19451,7 @@ static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_s
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "glv_functions.pyx":12
+  /* "GLV_functions.pyx":12
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])
  * 
  * def event(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
@@ -19471,7 +19471,7 @@ static PyObject *__pyx_pf_13glv_functions_2event(CYTHON_UNUSED PyObject *__pyx_s
   __Pyx_XDECREF(__pyx_t_8);
   __Pyx_XDECREF(__pyx_t_9);
   __PYX_XCLEAR_MEMVIEW(&__pyx_t_11, 1);
-  __Pyx_AddTraceback("glv_functions.event", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("GLV_functions.event", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __PYX_XCLEAR_MEMVIEW(&__pyx_v_fx, 1);
@@ -19610,7 +19610,7 @@ static PyType_Slot __pyx_type___pyx_array_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_array_spec = {
-  "glv_functions.array",
+  "GLV_functions.array",
   sizeof(struct __pyx_array_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_SEQUENCE,
@@ -19656,7 +19656,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "glv_functions.""array", /*tp_name*/
+  "GLV_functions.""array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -19809,7 +19809,7 @@ static PyType_Slot __pyx_type___pyx_MemviewEnum_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
-  "glv_functions.Enum",
+  "GLV_functions.Enum",
   sizeof(struct __pyx_MemviewEnum_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -19819,7 +19819,7 @@ static PyType_Spec __pyx_type___pyx_MemviewEnum_spec = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "glv_functions.""Enum", /*tp_name*/
+  "GLV_functions.""Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -20109,7 +20109,7 @@ static PyType_Slot __pyx_type___pyx_memoryview_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryview_spec = {
-  "glv_functions.memoryview",
+  "GLV_functions.memoryview",
   sizeof(struct __pyx_memoryview_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC,
@@ -20155,7 +20155,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "glv_functions.""memoryview", /*tp_name*/
+  "GLV_functions.""memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -20307,7 +20307,7 @@ static PyType_Slot __pyx_type___pyx_memoryviewslice_slots[] = {
   {0, 0},
 };
 static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
-  "glv_functions._memoryviewslice",
+  "GLV_functions._memoryviewslice",
   sizeof(struct __pyx_memoryviewslice_obj),
   0,
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_BASETYPE|Py_TPFLAGS_HAVE_GC|Py_TPFLAGS_SEQUENCE,
@@ -20317,7 +20317,7 @@ static PyType_Spec __pyx_type___pyx_memoryviewslice_spec = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "glv_functions.""_memoryviewslice", /*tp_name*/
+  "GLV_functions.""_memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -20435,6 +20435,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_s_Dimension_d_is_not_direct, __pyx_k_Dimension_d_is_not_direct, sizeof(__pyx_k_Dimension_d_is_not_direct), 0, 0, 1, 0},
     {&__pyx_n_s_Ellipsis, __pyx_k_Ellipsis, sizeof(__pyx_k_Ellipsis), 0, 0, 1, 1},
     {&__pyx_kp_s_Empty_shape_tuple_for_cython_arr, __pyx_k_Empty_shape_tuple_for_cython_arr, sizeof(__pyx_k_Empty_shape_tuple_for_cython_arr), 0, 0, 1, 0},
+    {&__pyx_n_s_GLV_functions, __pyx_k_GLV_functions, sizeof(__pyx_k_GLV_functions), 0, 0, 1, 1},
+    {&__pyx_kp_s_GLV_functions_pyx, __pyx_k_GLV_functions_pyx, sizeof(__pyx_k_GLV_functions_pyx), 0, 0, 1, 0},
     {&__pyx_n_s_ImportError, __pyx_k_ImportError, sizeof(__pyx_k_ImportError), 0, 0, 1, 1},
     {&__pyx_kp_s_Incompatible_checksums_0x_x_vs_0, __pyx_k_Incompatible_checksums_0x_x_vs_0, sizeof(__pyx_k_Incompatible_checksums_0x_x_vs_0), 0, 0, 1, 0},
     {&__pyx_n_s_IndexError, __pyx_k_IndexError, sizeof(__pyx_k_IndexError), 0, 0, 1, 1},
@@ -20493,8 +20495,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_fx, __pyx_k_fx, sizeof(__pyx_k_fx), 0, 0, 1, 1},
     {&__pyx_kp_u_gc, __pyx_k_gc, sizeof(__pyx_k_gc), 0, 1, 0, 0},
     {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
-    {&__pyx_n_s_glv_functions, __pyx_k_glv_functions, sizeof(__pyx_k_glv_functions), 0, 0, 1, 1},
-    {&__pyx_kp_s_glv_functions_pyx, __pyx_k_glv_functions_pyx, sizeof(__pyx_k_glv_functions_pyx), 0, 0, 1, 0},
     {&__pyx_kp_u_got, __pyx_k_got, sizeof(__pyx_k_got), 0, 1, 0, 0},
     {&__pyx_kp_u_got_differing_extents_in_dimensi, __pyx_k_got_differing_extents_in_dimensi, sizeof(__pyx_k_got_differing_extents_in_dimensi), 0, 1, 0, 0},
     {&__pyx_n_s_i, __pyx_k_i, sizeof(__pyx_k_i), 0, 0, 1, 1},
@@ -20749,7 +20749,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GIVEREF(__pyx_tuple__20);
   __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_Enum, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(1, 1, __pyx_L1_error)
 
-  /* "glv_functions.pyx":4
+  /* "GLV_functions.pyx":4
  * cimport numpy as np
  * 
  * def f(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
@@ -20759,9 +20759,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__22 = PyTuple_Pack(11, __pyx_n_s_t, __pyx_n_s_x, __pyx_n_s_r, __pyx_n_s_s, __pyx_n_s_A, __pyx_n_s_delta, __pyx_n_s_i, __pyx_n_s_p, __pyx_n_s_n, __pyx_n_s_i, __pyx_n_s_p); if (unlikely(!__pyx_tuple__22)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__22);
   __Pyx_GIVEREF(__pyx_tuple__22);
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_glv_functions_pyx, __pyx_n_s_f, 4, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 11, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__22, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_GLV_functions_pyx, __pyx_n_s_f, 4, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(0, 4, __pyx_L1_error)
 
-  /* "glv_functions.pyx":12
+  /* "GLV_functions.pyx":12
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])
  * 
  * def event(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
@@ -20771,7 +20771,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__24 = PyTuple_Pack(8, __pyx_n_s_t, __pyx_n_s_x, __pyx_n_s_r, __pyx_n_s_s, __pyx_n_s_A, __pyx_n_s_delta, __pyx_n_s_fx, __pyx_n_s_max_fx); if (unlikely(!__pyx_tuple__24)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__24);
   __Pyx_GIVEREF(__pyx_tuple__24);
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_glv_functions_pyx, __pyx_n_s_event, 12, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(6, 0, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__24, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_GLV_functions_pyx, __pyx_n_s_event, 12, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -21086,10 +21086,10 @@ static int __Pyx_modinit_function_import_code(void) {
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 static PyObject* __pyx_pymod_create(PyObject *spec, PyModuleDef *def); /*proto*/
-static int __pyx_pymod_exec_glv_functions(PyObject* module); /*proto*/
+static int __pyx_pymod_exec_GLV_functions(PyObject* module); /*proto*/
 static PyModuleDef_Slot __pyx_moduledef_slots[] = {
   {Py_mod_create, (void*)__pyx_pymod_create},
-  {Py_mod_exec, (void*)__pyx_pymod_exec_glv_functions},
+  {Py_mod_exec, (void*)__pyx_pymod_exec_GLV_functions},
   {0, NULL}
 };
 #endif
@@ -21102,7 +21102,7 @@ namespace {
   #endif
   {
       PyModuleDef_HEAD_INIT,
-      "glv_functions",
+      "GLV_functions",
       0, /* m_doc */
     #if CYTHON_PEP489_MULTI_PHASE_INIT
       0, /* m_size */
@@ -21150,11 +21150,11 @@ namespace {
 
 
 #if PY_MAJOR_VERSION < 3
-__Pyx_PyMODINIT_FUNC initglv_functions(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC initglv_functions(void)
+__Pyx_PyMODINIT_FUNC initGLV_functions(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC initGLV_functions(void)
 #else
-__Pyx_PyMODINIT_FUNC PyInit_glv_functions(void) CYTHON_SMALL_CODE; /*proto*/
-__Pyx_PyMODINIT_FUNC PyInit_glv_functions(void)
+__Pyx_PyMODINIT_FUNC PyInit_GLV_functions(void) CYTHON_SMALL_CODE; /*proto*/
+__Pyx_PyMODINIT_FUNC PyInit_GLV_functions(void)
 #if CYTHON_PEP489_MULTI_PHASE_INIT
 {
   return PyModuleDef_Init(&__pyx_moduledef);
@@ -21235,7 +21235,7 @@ bad:
 }
 
 
-static CYTHON_SMALL_CODE int __pyx_pymod_exec_glv_functions(PyObject *__pyx_pyinit_module)
+static CYTHON_SMALL_CODE int __pyx_pymod_exec_GLV_functions(PyObject *__pyx_pyinit_module)
 #endif
 #endif
 {
@@ -21258,7 +21258,7 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_glv_functions(PyObject *__pyx_pyin
   #if CYTHON_PEP489_MULTI_PHASE_INIT
   if (__pyx_m) {
     if (__pyx_m == __pyx_pyinit_module) return 0;
-    PyErr_SetString(PyExc_RuntimeError, "Module 'glv_functions' has already been imported. Re-initialisation is not supported.");
+    PyErr_SetString(PyExc_RuntimeError, "Module 'GLV_functions' has already been imported. Re-initialisation is not supported.");
     return -1;
   }
   #elif PY_MAJOR_VERSION >= 3
@@ -21270,13 +21270,13 @@ static CYTHON_SMALL_CODE int __pyx_pymod_exec_glv_functions(PyObject *__pyx_pyin
   Py_INCREF(__pyx_m);
   #else
   #if PY_MAJOR_VERSION < 3
-  __pyx_m = Py_InitModule4("glv_functions", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
+  __pyx_m = Py_InitModule4("GLV_functions", __pyx_methods, 0, 0, PYTHON_API_VERSION); Py_XINCREF(__pyx_m);
   if (unlikely(!__pyx_m)) __PYX_ERR(0, 1, __pyx_L1_error)
   #elif CYTHON_USE_MODULE_STATE
   __pyx_t_1 = PyModule_Create(&__pyx_moduledef); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 1, __pyx_L1_error)
   {
     int add_module_result = PyState_AddModule(__pyx_t_1, &__pyx_moduledef);
-    __pyx_t_1 = 0; /* transfer ownership from __pyx_t_1 to glv_functions pseudovariable */
+    __pyx_t_1 = 0; /* transfer ownership from __pyx_t_1 to GLV_functions pseudovariable */
     if (unlikely((add_module_result < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     pystate_addmodule_run = 1;
   }
@@ -21302,7 +21302,7 @@ if (!__Pyx_RefNanny) {
       Py_FatalError("failed to import 'refnanny' module");
 }
 #endif
-  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_glv_functions(void)", 0);
+  __Pyx_RefNannySetupContext("__Pyx_PyMODINIT_FUNC PyInit_GLV_functions(void)", 0);
   if (__Pyx_check_binary_version() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #ifdef __Pxy_PyFrame_Initialize_Offsets
   __Pxy_PyFrame_Initialize_Offsets();
@@ -21340,14 +21340,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_glv_functions) {
+  if (__pyx_module_is_main_GLV_functions) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "glv_functions")) {
-      if (unlikely((PyDict_SetItemString(modules, "glv_functions", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "GLV_functions")) {
+      if (unlikely((PyDict_SetItemString(modules, "GLV_functions", __pyx_m) < 0))) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -21881,7 +21881,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_Enum, __pyx_t_7) < 0) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "glv_functions.pyx":1
+  /* "GLV_functions.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
  * 
@@ -21891,31 +21891,31 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_7) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "glv_functions.pyx":4
+  /* "GLV_functions.pyx":4
  * cimport numpy as np
  * 
  * def f(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
  *     # RHS of the ODE
  *     cdef int i, p
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_13glv_functions_1f, 0, __pyx_n_s_f, NULL, __pyx_n_s_glv_functions, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 4, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_13GLV_functions_1f, 0, __pyx_n_s_f, NULL, __pyx_n_s_GLV_functions, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_f, __pyx_t_7) < 0) __PYX_ERR(0, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "glv_functions.pyx":12
+  /* "GLV_functions.pyx":12
  *            i] * x[p] for p in range(n) if p != i]) for i in range(n)])
  * 
  * def event(double t, double[:] x, double[:] r, double[:] s, double[:, :] A, double delta):             # <<<<<<<<<<<<<<
  *     # Event function for the ODE solver
  *     cdef double[:] fx = f(t, x, r, s, A, delta)
  */
-  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_13glv_functions_3event, 0, __pyx_n_s_event, NULL, __pyx_n_s_glv_functions, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 12, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_CyFunction_New(&__pyx_mdef_13GLV_functions_3event, 0, __pyx_n_s_event, NULL, __pyx_n_s_GLV_functions, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_7);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_event, __pyx_t_7) < 0) __PYX_ERR(0, 12, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
-  /* "glv_functions.pyx":1
+  /* "GLV_functions.pyx":1
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as np
  * 
@@ -21934,7 +21934,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_XDECREF(__pyx_t_7);
   if (__pyx_m) {
     if (__pyx_d && stringtab_initialized) {
-      __Pyx_AddTraceback("init glv_functions", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init GLV_functions", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     #if !CYTHON_USE_MODULE_STATE
     Py_CLEAR(__pyx_m);
@@ -21948,7 +21948,7 @@ if (!__Pyx_RefNanny) {
     }
     #endif
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init glv_functions");
+    PyErr_SetString(PyExc_ImportError, "init GLV_functions");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

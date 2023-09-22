@@ -72,8 +72,16 @@ class Dissimilarity:
         """
         # Calculate dissimilarity
         if self.dissimilarity_type == "rjsd":
-            dissimilarity = np.sqrt((self.dkl(self.normalized_sample_first_hat) +
-                                     self.dkl(self.normalized_sample_second_hat)) / 2)
+            sqrt_value = (self.dkl(self.normalized_sample_first_hat) +
+                          self.dkl(self.normalized_sample_second_hat)) / 2
+
+            # Check if the value inside the sqrt is negative
+            if sqrt_value < 0:
+                dissimilarity = 0
+            else:
+                dissimilarity = np.sqrt(sqrt_value)
+
+
             return dissimilarity
         elif self.dissimilarity_type == "jsd":
             dissimilarity = (self.dkl(self.normalized_sample_first_hat) +

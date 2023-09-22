@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.integrate import solve_ivp
-from glv_functions import f, event
+from GLV_functions import f, event
 
 class Glv:
     """
@@ -92,7 +92,7 @@ class Glv:
                 # Save the solution up to the event time.
                 self.Final_abundances[:, m] = sol.y[:, event_idx] if event_idx is not None else sol.y[:, -1]
             final_abundances = self.Final_abundances
-            return final_abundances
+            return self.normalize_cohort(final_abundances.T)
 
         else:  # Solution for single sample.
             sol = solve_ivp(f, (0, self.final_time),
@@ -104,19 +104,13 @@ class Glv:
             # Save the solution up to the event time
             self.Final_abundances_single_sample[:] = sol.y[:, event_idx] if event_idx is not None else sol.y[:, -1]
         final_abundances = self.Final_abundances_single_sample
-        return final_abundances.T
+        return self.normalize_cohort(final_abundances)
 
-    def normalize_results(self):
-        """
-        Normalization of the final abundances.
-        """
-        if self.smp > 1:  # Normalization for cohort
-            norm_factors = np.sum(self.Final_abundances, axis=0)
-            print(norm_factors)
-            norm_Final_abundances = np.array([self.Final_abundances[:, i] / norm_factors[i] for i in range(
-                0, np.size(norm_factors))])
-            return norm_Final_abundances.T
-        else:  # Normalization for single sample
-            norm_factor = np.sum(self.Final_abundances_single_sample)
-            norm_Final_abundances_single_sample = self.Final_abundances_single_sample/norm_factor
-            return norm_Final_abundances_single_sample.T
+    @staticmethod
+    def normalize_cohort(cohort):
+        # normalization function
+        if cohort.ndim == 1:
+            cohort_normalized = cohort / cohort.sum()
+        else:
+            cohort_normalized = cohort / np.linalg.norm(cohort, ord=1, axis=1, keepdims=True)
+        return cohort_normalized
