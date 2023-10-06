@@ -27,7 +27,6 @@ def calc_matrix(num_of_species):
 
 A = calc_matrix(num_species)
 
-
 # Set initial conditions
 def calc_initial_condition(number_of_species):
     prob_vector = np.random.uniform(0.6, 0.9, number_of_species)
@@ -146,8 +145,8 @@ def plot_3d_matrices(matrices, titles=('IDOA w.r.t Dynamics A', 'IDOA w.r.t Dyna
             xaxis=dict(zeroline=False),
             yaxis=dict(zeroline=False),
             zaxis=dict(zeroline=False),
-            aspectmode="cube",  # Set aspect mode to "cube" for equal scaling
-            aspectratio=dict(x=1, y=1, z=1)  # Set aspect ratio to 1:1:1 for equal scaling
+            aspectmode="cube",
+            aspectratio=dict(x=1, y=1, z=1)
         )
     )
 
@@ -195,7 +194,7 @@ def mean_bray_curtis_distances(cohort_first, cohort_second):
 
         for row_first in cohort_first:
             if not np.array_equal(row_first, row_second):
-                distance = braycurtis(row_first, row_second)
+                distance = braycurtis(row_first, row_second)#braycurtis(row_first, row_second)
                 row_distances.append(distance)
 
         if row_distances:

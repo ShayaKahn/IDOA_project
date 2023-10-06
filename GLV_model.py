@@ -79,6 +79,7 @@ class Glv:
 
         if self.smp > 1:  # Solution for cohort.
             for m in range(self.smp):
+                print(m)
                 # solve GLV up to time span.
                 sol = solve_ivp(f_with_params, (0, self.final_time), self.Y[:][m], max_step=self.max_step,
                                 events=event_with_params)
