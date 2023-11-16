@@ -3,6 +3,7 @@ import numpy as np
 from GLV_model import Glv
 import plotly.graph_objects as go
 from scipy.spatial.distance import braycurtis
+from Functions import *
 
 # Variables
 s = np.ones(100)
@@ -10,40 +11,13 @@ r = np.random.uniform(0, 1, 100)
 time_span = 200
 max_step = 0.5
 delta = 0.00001
-delta_interacrions = 0.01
 num_samples = 100
 num_species = 100
 
 # Calculate interaction matrix
-def calc_matrix(num_of_species):
-    interaction_matrix = np.zeros([num_of_species, num_of_species])
-    p = 0.25
-    for row, col in np.ndindex(interaction_matrix.shape):
-        if np.random.uniform(0, 1) < p:
-            interaction_matrix[row, col] = np.random.uniform(-delta_interacrions, delta_interacrions)
-        else:
-            interaction_matrix[row, col] = 0
-    return interaction_matrix
-
 A = calc_matrix(num_species)
 
 # Set initial conditions
-def calc_initial_condition(number_of_species):
-    prob_vector = np.random.uniform(0.6, 0.9, number_of_species)
-    y0 = np.zeros(number_of_species)
-    for i in range(0, number_of_species):
-        if np.random.uniform(0, 1) < prob_vector[i]:
-            y0[i] = np.random.uniform(0, 1)
-        else:
-            y0[i] = 0
-    return y0
-
-def clac_set_of_initial_conditions(num_species, num_samples):
-    init_cond_set = np.zeros([num_samples, num_species])
-    for i in range(0, num_samples):
-        init_cond_set[:][i] = calc_initial_condition(num_species)
-    return init_cond_set
-
 Y0 = clac_set_of_initial_conditions(num_species, num_samples)
 Y1 = clac_set_of_initial_conditions(num_species, num_samples)
 Y2 = clac_set_of_initial_conditions(num_species, num_samples)

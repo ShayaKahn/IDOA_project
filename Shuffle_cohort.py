@@ -3,11 +3,12 @@ from scipy.sparse import lil_matrix
 import random
 
 class ShuffledCohort:
-    def __init__(self, cohort):
+    def __init__(self, cohort, preserve_assemblage=True):
         """
         :param cohort: a numpy matrix with samples in rows and species in columns
         """
-        self.cohort = cohort
+        self.cohort = cohort.copy()
+        self.preserve = preserve_assemblage
         if not isinstance(self.cohort, np.ndarray) or self.cohort.ndim != 2:
             print("Error: The provided cohort is not a 2-dimensional numpy matrix.")
         try:
@@ -15,12 +16,20 @@ class ShuffledCohort:
             assert np.all(nonzero_counts >= 1)
         except AssertionError:
             print("Error: The condition of all columns with more than 1 non-zero value is not satisfied.")
-        self.shuffled_cohort = lil_matrix(cohort.T)
+        if self.preserve:
+            self.shuffled_cohort = lil_matrix(cohort.T)
+        else:
+            self.shuffled_cohort = self.cohort
 
     def create_shuffled_cohort(self):
-        for j, abundances in enumerate(self.shuffled_cohort.data):
-            self.shuffled_cohort.data[j] = self._derange_list(abundances)
-        return self._normalize_cohort(self.shuffled_cohort.toarray().T)
+        if self.preserve:
+            for j, abundances in enumerate(self.shuffled_cohort.data):
+                self.shuffled_cohort.data[j] = self._derange_list(abundances)
+            return self._normalize_cohort(self.shuffled_cohort.toarray().T)
+        else:
+            for col in range(self.shuffled_cohort.shape[1]):
+                np.random.shuffle(self.shuffled_cohort[:, col])
+            return self._normalize_cohort(self.shuffled_cohort)
 
     @ staticmethod
     def _is_derangement(original, shuffled):

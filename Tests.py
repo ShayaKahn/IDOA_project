@@ -147,9 +147,11 @@ class TestShuffledCohort(TestCase):
         self.cohort = np.array([[0.1, 0.4, 0.3, 0, 0.2], [0, 0.2, 0.4, 0.4, 0], [0.3, 0.3, 0.1, 0.2, 0.1],
                                 [0, 0, 1, 0, 0]])
 
-        #print(self.cohort)
         self.shuffled_cohort_object = ShuffledCohort(self.cohort)
         self.shuffled_cohort = self.shuffled_cohort_object.create_shuffled_cohort()
+
+        self.shuffled_cohort_object_npa = ShuffledCohort(self.cohort, preserve_assemblage=False)
+        self.shuffled_cohort_npa = self.shuffled_cohort_object_npa.create_shuffled_cohort()
 
     def test_shuffle_cohort(self):
 
