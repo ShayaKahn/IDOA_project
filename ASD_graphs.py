@@ -67,10 +67,10 @@ min_overlap = 0.954
 maximal = 1
 zero = 0
 min_cut = 0.94
-max_cut = 0.941#0.97
+max_cut = 0.97
 step_cut = 0.001
 min_per = 1
-max_per = 2#20
+max_per = 20
 step_per = 1
 
 # Create IDOA vectors for the analysis
