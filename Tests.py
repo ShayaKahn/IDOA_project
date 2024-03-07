@@ -56,7 +56,7 @@ class Test_Overlap(TestCase):
         self.second_sample = np.array([0.1, 0, 0.2, 0.4, 0.1, 0, 0, 0.2])
 
     def test_calculate_overlap(self):
-        overlap = Overlap(self.first_sample, self.second_sample, overlap_type='Jaccard').calculate_overlap()
+        overlap = Overlap(self.first_sample, self.second_sample).calculate_overlap()
 
 class TestIDOA(TestCase):
     """
@@ -82,64 +82,60 @@ class TestIDOA(TestCase):
         self.cohort_not_included = np.array([[2, 13, 1, 0, 0, 0, 0, 3, 0, 0.1],
                                              [1, 10, 20, 0, 4, 8, 0.01, 19, 0, 0]])
 
-        self.idoa_ss_included = IDOA(self.ref_cohort, self.single_sample_included, min_overlap=0.2, max_overlap=1,
-                                     zero_overlap=0, identical=False)
-        self.idoa_ss_included_vector = self.idoa_ss_included.calc_idoa_vector(second_cohort_ind_dict=(0,))
+        self.idoa_ss_included = IDOA(self.ref_cohort, self.single_sample_included, min_overlap=0.2, max_overlap=1)
+        self.idoa_ss_included_vector = self.idoa_ss_included.calc_idoa_vector()
 
         self.idoa_ss_not_included = IDOA(self.ref_cohort, self.single_sample_not_included, min_overlap=0.2,
-                                         max_overlap=1, zero_overlap=0, identical=False)
+                                         max_overlap=1)
         self.idoa_ss_not_included_vector = self.idoa_ss_not_included.calc_idoa_vector()
 
-        self.idoa_cohort_included = IDOA(self.ref_cohort, self.cohort_included, min_overlap=0.2,
-                                         max_overlap=1, zero_overlap=0, identical=False)
-        self.idoa_cohort_included_vector = self.idoa_cohort_included.calc_idoa_vector(second_cohort_ind_dict={0: (0,)})
+        self.idoa_cohort_included = IDOA(self.ref_cohort, self.cohort_included, min_overlap=0.2, max_overlap=1)
+        self.idoa_cohort_included_vector = self.idoa_cohort_included.calc_idoa_vector()
 
-        self.idoa_cohort_not_included = IDOA(self.ref_cohort, self.cohort_not_included, min_overlap=0.2,
-                                             max_overlap=1, zero_overlap=0, identical=False)
+        self.idoa_cohort_not_included = IDOA(self.ref_cohort, self.cohort_not_included, min_overlap=0.2, max_overlap=1)
         self.idoa_cohort_not_included_vector = self.idoa_cohort_not_included.calc_idoa_vector()
 
-        self.idoa_identical = IDOA(self.ref_cohort, self.ref_cohort, min_overlap=0.2,
-                                   max_overlap=1, zero_overlap=0, identical=True)
+        self.idoa_identical = IDOA(self.ref_cohort, self.ref_cohort, min_overlap=0.2, max_overlap=1)
         self.idoa_identical_vector = self.idoa_identical.calc_idoa_vector()
 
     def test_calc_idoa_vector(self):
 
         # Test single sample included
         self.assertEqual(np.size(self.idoa_ss_included_vector), 1)
-        self.assertEqual(np.size(self.idoa_ss_included.dissimilarity_overlap_container_no_constraint[0][0]),
+        self.assertEqual(np.size(self.idoa_ss_included.d_o_list_unconst[0][0]),
                          np.size(self.ref_cohort, axis=0) - 1)
-        self.assertFalse(np.any(self.idoa_ss_included.dissimilarity_overlap_container_no_constraint[0][0] == 1),
+        self.assertFalse(np.any(self.idoa_ss_included.d_o_list_unconst[0][0] == 1),
                          "Overlap contains 1")
-        self.assertFalse(np.any(self.idoa_ss_included.dissimilarity_overlap_container_no_constraint[0][1] == 0),
+        self.assertFalse(np.any(self.idoa_ss_included.d_o_list_unconst[0][1] == 0),
                          "Dissimilarity contains 0")
 
         # Test single sample not included
         self.assertEqual(np.size(self.idoa_ss_not_included_vector), 1)
-        self.assertEqual(np.size(self.idoa_ss_not_included.dissimilarity_overlap_container_no_constraint[0][0]),
+        self.assertEqual(np.size(self.idoa_ss_not_included.d_o_list_unconst[0][0]),
                          np.size(self.ref_cohort, axis=0))
 
         # Test cohort included
         self.assertEqual(np.size(self.idoa_cohort_included_vector), np.size(self.cohort_included, axis=0))
-        self.assertEqual(np.size(self.idoa_cohort_included.dissimilarity_overlap_container_no_constraint[0][0]),
+        self.assertEqual(np.size(self.idoa_cohort_included.d_o_list_unconst[0][0]),
                          np.size(self.ref_cohort, axis=0) - 1)
-        self.assertFalse(np.any(self.idoa_cohort_included.dissimilarity_overlap_container_no_constraint[0][0] == 1),
+        self.assertFalse(np.any(self.idoa_cohort_included.d_o_list_unconst[0][0] == 1),
                          "Overlap contains 1")
-        self.assertFalse(np.any(self.idoa_cohort_included.dissimilarity_overlap_container_no_constraint[0][1] == 0),
+        self.assertFalse(np.any(self.idoa_cohort_included.d_o_list_unconst[0][1] == 0),
                          "Dissimilarity contains 0")
 
         # Test cohort not included
         self.assertEqual(np.size(self.idoa_cohort_not_included_vector),
                          np.size(self.idoa_cohort_not_included_vector, axis=0))
-        self.assertEqual(np.size(self.idoa_cohort_not_included.dissimilarity_overlap_container_no_constraint[0][0]),
+        self.assertEqual(np.size(self.idoa_cohort_not_included.d_o_list_unconst[0][0]),
                          np.size(self.ref_cohort, axis=0))
 
         # Test identical
         self.assertEqual(np.size(self.idoa_identical_vector), np.size(self.ref_cohort, axis=0))
-        self.assertEqual(np.size(self.idoa_identical.dissimilarity_overlap_container_no_constraint[0][0]),
+        self.assertEqual(np.size(self.idoa_identical.d_o_list_unconst[0][0]),
                          np.size(self.ref_cohort, axis=0) - 1)
-        self.assertFalse(np.any(self.idoa_identical.dissimilarity_overlap_container_no_constraint[0][0] == 1),
+        self.assertFalse(np.any(self.idoa_identical.d_o_list_unconst[0][0] == 1),
                          "Overlap contains 1")
-        self.assertFalse(np.any(self.idoa_identical.dissimilarity_overlap_container_no_constraint[0][1] == 0),
+        self.assertFalse(np.any(self.idoa_identical.d_o_list_unconst[0][1] == 0),
                          "Dissimilarity contains 0")
 
 class TestShuffledCohort(TestCase):
@@ -149,9 +145,6 @@ class TestShuffledCohort(TestCase):
 
         self.shuffled_cohort_object = ShuffledCohort(self.cohort)
         self.shuffled_cohort = self.shuffled_cohort_object.create_shuffled_cohort()
-
-        self.shuffled_cohort_object_npa = ShuffledCohort(self.cohort, preserve_assemblage=False)
-        self.shuffled_cohort_npa = self.shuffled_cohort_object_npa.create_shuffled_cohort()
 
     def test_shuffle_cohort(self):
 

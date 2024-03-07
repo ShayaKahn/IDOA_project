@@ -5,11 +5,12 @@ from DOC import DOC
 from Shuffle_cohort import ShuffledCohort
 import pandas as pd
 import numpy as np
+from Functions import calc_bray_curtis_dissimilarity
 
 import os
 os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA\HMP_cohorts')
 
-real = pd.read_excel('Stool.xlsx', header=None)
+real = pd.read_excel('Right retroauricular crease.xlsx', header=None)
 
 # Normalization function.
 
@@ -55,14 +56,7 @@ real_cohort = filter_out_single_nonzero_columns(real_cohort)
 
 real_cohort = normalize_cohort(real_cohort)
 
-# Apply DOC using the DOC class.
-DOC_real = DOC(real_cohort)
-doc_mat_real = DOC_real.calc_doc()
-o_real = doc_mat_real[0, :]
-d_real = doc_mat_real[1, :]
-
 # Plot DOC function, the function plots the DOC and fits a LOWESS curve to the scatterplot.
-
 import plotly.graph_objects as go
 import statsmodels.api as sm
 
@@ -125,36 +119,28 @@ def scatterplot_plotly(x, y, xlabel="Overlap", ylabel="Dissimilarity", title="DO
     
     fig.show()
 
-scatterplot_plotly(o_real, d_real)
-
 # Create shuffled cohort using the ShuffledCohort class.
 
 shuffled_real_cohort = ShuffledCohort(real_cohort).create_shuffled_cohort()
 
-DOC_shuffled_real = DOC(shuffled_real_cohort)
-doc_mat_shuffled_real = DOC_shuffled_real.calc_doc()
-o_shuffled_real = doc_mat_shuffled_real[0, :]
-d_shuffled_real = doc_mat_shuffled_real[1, :]
-
-scatterplot_plotly(o_shuffled_real, d_shuffled_real)
-
-
 # Calculation of the IDOA values of samples in the real and shuffled cohort with respect to the real cohort using the
 # IDOA class, the threshold for the IDOA calculation is top 50% of the highest overlap.
 
-IDOA_object_real = IDOA(real_cohort, real_cohort, min_overlap=0.5, max_overlap=1,
-                        zero_overlap=0, identical=True, min_num_points=0,
-                        percentage=50)
+IDOA_object_real = IDOA(real_cohort, real_cohort, min_overlap=0.5, max_overlap=1, min_num_points=0, percentage=50)
 IDOA_real_vector = IDOA_object_real.calc_idoa_vector()
 
-IDOA_object_shuffled = IDOA(real_cohort, shuffled_real_cohort, min_overlap=0.5,
-                            max_overlap=1, zero_overlap=0, identical=False,
-                            min_num_points=0, percentage=50)
+IDOA_object_shuffled = IDOA(real_cohort, shuffled_real_cohort, min_overlap=0.5, max_overlap=1, min_num_points=0,
+                            percentage=50)
 IDOA_shuffled_vector = IDOA_object_shuffled.calc_idoa_vector()
 
 # Plot hte IDOA histograms.
 
-bin_size = 0.05
+#bin_size = 0.05
+num_bins = 30
+
+bin_size = (max(max(IDOA_real_vector), max(
+    IDOA_shuffled_vector)) - min(min(IDOA_real_vector), min(
+    IDOA_shuffled_vector))) / num_bins
 
 # histogram for the IDOA values for the real cohort.
 histogram_trace_real = go.Histogram(
@@ -180,22 +166,27 @@ histogram_trace_shuffled = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='IDOA',
-        zeroline=False,
+        zeroline=False,  # Hide default x-axis line
+        showline=True,  # Show custom x-axis line
+        linecolor='black',  # Set color of x-axis line to black
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
-        tickfont=dict(size=20)  
+        tickfont=dict(size=20)
     ),
     yaxis=dict(
         title='Density',
-        zeroline=False,
+        zeroline=False,  # Hide default y-axis line
+        showline=True,  # Show custom y-axis line
+        linecolor='black',  # Set color of y-axis line to black
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
-        tickfont=dict(size=20)  
+        tickfont=dict(size=20)
     ),
     barmode='overlay',
     legend=dict(x=0, y=1, font=dict(size=25, family="Computer Modern")),
     width=600,
-    height=600
+    height=600,
+    plot_bgcolor='white'  # Set background color to white
 )
 
 fig = go.Figure(data=[histogram_trace_real, histogram_trace_shuffled], layout=layout)
@@ -203,53 +194,10 @@ fig.show()
 
 from scipy.spatial.distance import braycurtis
 
-def calc_bray_curtis_dissimilarity(first_cohort, second_cohort, median=False, self_cohort=False):
-    """
-    :param first_cohort: The first cohort.
-    :param second_cohort: The second cohort.
-    :param median: If True, the function will calculate the median distance.
-    :param self_cohort: If true, it means that first_cohort is identical to second_cohort,
-                        and the function will not calculate distances of samples to themselves.
-    :return: mean of median distance vector.
-    """
-    if self_cohort:
-        """
-        If we compare two identical cohorts, we want to avoid measuring distance between the same samples.
-        """
-        num_samples = np.size(first_cohort, 0)
-        mean_dist_vector = np.zeros(num_samples)
-        for i in range(0, num_samples):
-            sample_dist = np.array([braycurtis(first_cohort[j, :], second_cohort[i, :]
-                                               ) for j in range(0, num_samples) if i != j])
-            if median:  # measure median distance
-                mean_dist_vector[i] = np.median(sample_dist)
-            else:  # measure mean distance
-                mean_dist_vector[i] = np.mean(sample_dist)
-    else:
-        """
-        Compare different cohorts.
-        """
-        num_samples_first = np.size(first_cohort, 0)
-        num_samples_second = np.size(second_cohort, 0)
-        mean_dist_vector = np.zeros(num_samples_second)
-        for i in range(0, num_samples_second):
-            sample_dist = np.zeros(num_samples_first)
-            for j in range(0, num_samples_first):
-                dist = braycurtis(first_cohort[j, :], second_cohort[i, :])
-                sample_dist[j] = dist
-            if median:  # measure median distance
-                mean_dist_vector[i] = np.median(sample_dist)
-            else:  # measure mean distance
-                mean_dist_vector[i] = np.mean(sample_dist)
-    return mean_dist_vector
-
-
 # Calculate the mean distance for the real and shuffled samples from the real cohort samples.
 
-distance_real_vector = calc_bray_curtis_dissimilarity(real_cohort, real_cohort,
-                                                      median=False, self_cohort=True)
-distance_shuffled_vector = calc_bray_curtis_dissimilarity(shuffled_real_cohort, real_cohort,
-                                                          median=False, self_cohort=False)
+distance_real_vector = calc_bray_curtis_dissimilarity(real_cohort, real_cohort)
+distance_shuffled_vector = calc_bray_curtis_dissimilarity(shuffled_real_cohort, real_cohort)
 
 # Plot hte Mean distance histograms.
 
@@ -283,22 +231,27 @@ histogram_trace_shuffled = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='Mean Bray Curtis',
-        zeroline=False,
+        zeroline=False,  # Hide default x-axis line
+        showline=True,  # Show custom x-axis line
+        linecolor='black',  # Set color of x-axis line to black
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
-        tickfont=dict(size=20) 
+        tickfont=dict(size=20)
     ),
     yaxis=dict(
         title='Density',
-        zeroline=False,
+        zeroline=False,  # Hide default y-axis line
+        showline=True,  # Show custom y-axis line
+        linecolor='black',  # Set color of y-axis line to black
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
-        tickfont=dict(size=20)  
+        tickfont=dict(size=20)
     ),
     barmode='overlay',
     legend=dict(x=0.7, y=1, font=dict(size=25, family="Computer Modern")),
     width=600,
-    height=600
+    height=600,
+    plot_bgcolor='white'  # Set background color to white
 )
 
 fig = go.Figure(data=[histogram_trace_real, histogram_trace_shuffled], layout=layout)

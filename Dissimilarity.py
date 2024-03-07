@@ -3,14 +3,15 @@ from scipy.spatial.distance import braycurtis, euclidean
 
 class Dissimilarity:
     """
-    This class calculates the dissimilarity value between two given samples
+    This class calculates the dissimilarity value between two given samples.
     """
     def __init__(self, sample_first, sample_second, dissimilarity_type="rjsd"):
         """
-        :param sample_first: first sample, 1D array.
-        :param sample_second: second sample, 1D array.
-        param dissimilarity_type: The type of the dissimilarity, optional values are:
-        rjsd, jsd, BC, euclidean. Type: string. Default: rjsd.
+        Arguments:
+        sample_first -- first sample, 1D array of the optional shapes: (n_features,), (1,n_features), (n_features,1).
+        sample_second -- second sample, 1D array of the optional shapes: (n_features,), (1,n_features), (n_features,1).
+        dissimilarity_type -- The type of the dissimilarity, optional values are:
+                              rjsd, jsd, BC, Euclidean. Type: string. Default: rjsd.
         """
         if not isinstance(dissimilarity_type, str) or dissimilarity_type not in ["rjsd", "jsd", "BC", "euclidean"]:
             raise TypeError("dissimilarity_type must be a string with optional values:"
@@ -18,18 +19,25 @@ class Dissimilarity:
         self.dissimilarity_type = dissimilarity_type
         if not isinstance(sample_first, np.ndarray) or not isinstance(sample_second, np.ndarray):
             raise TypeError("sample_first and sample_second must be numpy arrays")
-        if sample_first.shape != sample_second.shape:
-            raise ValueError("sample_first and sample_second must have the same length")
-        self.sample_first = sample_first
-        self.sample_second = sample_second
-        [self.normalized_sample_first, self.normalized_sample_second] = self.normalize()
+        if sample_first.ndim == 2:
+            self.sample_first = sample_first.reshape(-1)
+        else:
+            self.sample_first = sample_first
+        if sample_second.ndim == 2:
+            self.sample_second = sample_second.reshape(-1)
+        else:
+            self.sample_second = sample_second
+        assert self.sample_first.size == self.sample_second.size, 'The number of features must be equal!'
+        self.normalized_sample_first, self.normalized_sample_second = self.normalize()
         self.s = self.find_intersection()
-        [self.normalized_sample_first_hat, self.normalized_sample_second_hat, self.z] = self.calculate_normalized_in_s()
+        self.normalized_sample_first_hat, self.normalized_sample_second_hat, self.z = self.calculate_normalized_in_s()
 
     def normalize(self):
         """
         This method normalizes the two samples.
-        :return: normalized samples.
+
+        Return:
+        normalized_sample_first, normalized_sample_second -- The two normalized samples.
         """
         normalized_sample_first = self.sample_first / np.sum(self.sample_first)  # Normalization of the first sample.
         normalized_sample_second = self.sample_second / np.sum(self.sample_second)  # Normalization of the second sample.
@@ -38,7 +46,9 @@ class Dissimilarity:
     def find_intersection(self):
         """
         This method finds the shared non-zero indexes of the two samples.
-        :return: the set s with represent the intersected indexes
+
+        Return:
+        s -- the set s with represent the intersected indexes.
         """
         nonzero_index_first = np.nonzero(self.normalized_sample_first)  # Find the non-zero index of the first sample.
         nonzero_index_second = np.nonzero(self.normalized_sample_second)  # Find the non-zero index of the second sample.
@@ -48,7 +58,9 @@ class Dissimilarity:
     def calculate_normalized_in_s(self):
         """
         This method calculates the normalized samples inside s.
-        :return: the normalized samples inside s.
+
+        Return:
+        normalized_sample_first_hat, normalized_sample_second_hat, z -- the normalized samples inside s and variable z.
         """
         normalized_sample_first_hat = self.normalized_sample_first[self.s] /\
                                       np.sum(self.normalized_sample_first[self.s])
@@ -60,15 +72,20 @@ class Dissimilarity:
     def dkl(self, u_hat):
         """
         This method calculates the Kulleback-Leibler divergence.
-        :param u_hat: 1D vector.
-        :return: dkl value.
+
+        Arguments:
+        u_hat -- 1D vector.
+        Return:
+        dkl value.
         """
         return np.sum(u_hat*np.log(u_hat/self.z))  # Calculate dkl
 
     def calculate_dissimilarity(self):
         """
         This method calculates the dissimilarity value.
-        :return: dissimilarity value.
+
+        Return:
+        dissimilarity value.
         """
         # Calculate dissimilarity
         if self.dissimilarity_type == "rjsd":

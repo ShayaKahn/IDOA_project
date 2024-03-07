@@ -32,13 +32,13 @@ def normalize_cohort(cohort):
         cohort_normalized = cohort / np.linalg.norm(cohort, ord=1, axis=1, keepdims=True)
     return cohort_normalized
 
-os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA\HMP_cohorts')
+os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA\Tongue_data')
 
 # Filtering and normalization, the cohort is normalized so the samples (rows) sum up to one.
 # Species that are non-zero at only one sample or less and species with less than 0.05% of the total abundance are
 # filtered.
 
-Stool = pd.read_excel('Stool.xlsx', header=None)
+Stool = pd.read_excel('Tongue_data.xlsx', header=None)
 Stool_cohort = Stool.values
 Stool_cohort = Stool.T
 Stool_cohort = Stool_cohort.to_numpy()
@@ -59,16 +59,16 @@ os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA')
 
 # Load MIDAS stool cohort.
 
-MIDAS_stool = pd.read_excel('Midas_stool.xlsx', header=None)
+MIDAS_stool = pd.read_excel('Midas_tongue.xlsx', header=None)
 MIDAS_stool_cohort = MIDAS_stool.values
 
 os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA')
 
 # Load SparseDOSSA2 stool cohort and filtered species binary vector.
 
-SparseDOSSA2_stool = pd.read_excel('SparseDOSSA2_simulated_samples_stool_new.xlsx', header=None)
+SparseDOSSA2_stool = pd.read_excel('SparseDOSSA2_simulated_samples_Tongue.xlsx', header=None)
 SparseDOSSA2_stool = SparseDOSSA2_stool.values
-SparseDOSSA2_stool_filtered_species = pd.read_excel('SparseDOSSA2_filtered_species_binary_stool_new.xlsx',
+SparseDOSSA2_stool_filtered_species = pd.read_excel('SparseDOSSA2_filtered_species_binary_Tongue.xlsx',
                                                     header=None)
 SparseDOSSA2_stool_filtered_species = SparseDOSSA2_stool_filtered_species.values
 SparseDOSSA2_stool_filtered_species = SparseDOSSA2_stool_filtered_species.flatten()
@@ -211,20 +211,24 @@ layout = go.Layout(
         'zeroline': False,
         'showgrid': False,
         "showline": True,
+        "linecolor": "black",
         "linewidth": 2,
         'tickfont': dict(size=20),
     },
     yaxis={
         'title': {"text": 'Density', 'font': {'size': 30, "family": "Computer Modern"}},
+        'zeroline': False,
         'showgrid': False,
         "showline": True,
+        "linecolor": "black",
         "linewidth": 2,
-        'tickfont': dict(size=20)
+        'tickfont': dict(size=20),
     },
-    legend=dict(x=0, y=1, font=dict(size=25, family="latex")),
+    legend=dict(x=0.05, y=1, font=dict(size=25, family="latex")),
     width=700,
     height=700,
     barmode='overlay',
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_real, histogram_trace_MIDAS, histogram_trace_SparseDOSSA2,
@@ -281,20 +285,24 @@ layout = go.Layout(
         'zeroline': False,
         'showgrid': False,
         "showline": True,
+        "linecolor": "black",
         "linewidth": 2,
         'tickfont': dict(size=20),
     },
     yaxis={
         'title': {"text": 'Density', 'font': {'size': 30, "family": "Computer Modern"}},
+        'zeroline': False,
         'showgrid': False,
         "showline": True,
+        "linecolor": "black",
         "linewidth": 2,
-        'tickfont': dict(size=20)
+        'tickfont': dict(size=20),
     },
     legend=dict(x=0, y=1, font=dict(size=25, family="latex")),
     width=700,
     height=700,
     barmode='overlay',
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_real, histogram_trace_MIDAS, histogram_trace_SparseDOSSA2,
@@ -360,11 +368,12 @@ fig_pcoa.add_trace(go.Scatter(x=df[df['color'] == 'grey']['PCoA 1'],
 # Update layout
 fig_pcoa.update_layout(
     xaxis=dict(
-        showline=False,
+        showline=True,
         showgrid=False,
+        linecolor='black',
         showticklabels=True,
         zeroline=False,
-        title_text='PCoA 1',
+        title_text='PCo1',
         title_font=dict(  
             size=30
         ),
@@ -373,11 +382,12 @@ fig_pcoa.update_layout(
         )
     ),
     yaxis=dict(
-        showline=False,
+        showline=True,
+        linecolor='black',
         showgrid=False,
         showticklabels=True,
         zeroline=False,
-        title_text='PCoA 2',
+        title_text='PCo2',
         title_font=dict( 
             size=30
         ),
@@ -401,30 +411,25 @@ fig_pcoa.update_layout(
         font=dict(
             family="latex",
             size=25,  
-            color="black"
-        )
-    )
+            color="black")),
+    plot_bgcolor='white'
 )
 
 fig_pcoa.show()
 
 # Clculate IDOA for all groups
 
-IDOA_object_real = IDOA(Stool_cohort, Stool_cohort, min_overlap=0.9,
-                        max_overlap=1, zero_overlap=0, identical=True, min_num_points=0,
+IDOA_object_real = IDOA(Stool_cohort, Stool_cohort, min_overlap=0.9, max_overlap=1, min_num_points=0,
                         percentage=50, method='percentage')
 IDOA_vector_real = IDOA_object_real.calc_idoa_vector()
-IDOA_object_MIDAS = IDOA(MIDAS_stool_cohort, MIDAS_stool_cohort,
-                         min_overlap=0.9, max_overlap=1, zero_overlap=0,
-                         identical=True, min_num_points=0, percentage=50, method='percentage')
+IDOA_object_MIDAS = IDOA(Stool_cohort, MIDAS_stool_cohort, min_overlap=0.9, max_overlap=1, min_num_points=0,
+                         percentage=50, method='percentage')
 IDOA_vector_MIDAS = IDOA_object_MIDAS.calc_idoa_vector()
-IDOA_object_shuffled = IDOA(stool_cohort_shuffled, stool_cohort_shuffled,
-                            min_overlap=0.9, max_overlap=1, zero_overlap=0,
-                            identical=True, min_num_points=0, percentage=50, method='percentage')
+IDOA_object_shuffled = IDOA(Stool_cohort, stool_cohort_shuffled, min_overlap=0.9, max_overlap=1,
+                            min_num_points=0, percentage=50, method='percentage')
 IDOA_vector_shuffled = IDOA_object_shuffled.calc_idoa_vector()
-IDOA_object_SparseDOSSA2 = IDOA(SparseDOSSA2_stool_cohort_part, SparseDOSSA2_stool_cohort_part,
-                                min_overlap=0.9, max_overlap=1, zero_overlap=0,
-                                identical=True, min_num_points=0, percentage=50, method='percentage')
+IDOA_object_SparseDOSSA2 = IDOA(Stool_cohort, SparseDOSSA2_stool_cohort_part,
+                                min_overlap=0.9, max_overlap=1, min_num_points=0, percentage=50, method='percentage')
 IDOA_vector_SparseDOSSA2 = IDOA_object_SparseDOSSA2.calc_idoa_vector()
 
 # Plot IDOA histograms for all groups
@@ -476,6 +481,7 @@ layout = go.Layout(
         'zeroline': False,
         'showgrid': False,
         "showline": True,
+        "linecolor": "black",
         "linewidth": 2,
         'tickfont': dict(size=20),
     },
@@ -483,6 +489,7 @@ layout = go.Layout(
         'title': {"text": 'Density', 'font': {'size': 30, "family": "Computer Modern"}},
         'showgrid': False,
         "showline": True,
+        "linecolor": "black",
         "linewidth": 2,
         'tickfont': dict(size=20)
     },
@@ -490,6 +497,7 @@ layout = go.Layout(
     width=700,
     height=700,
     barmode='overlay',
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_real, histogram_trace_MIDAS, histogram_trace_SparseDOSSA2,

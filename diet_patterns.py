@@ -79,7 +79,7 @@ def get_all_similar_and_dissimilar_subsets(X, X_otu, PC=False, components=2):
     
     return all_subsets, similar_indexes_container
 
-subsets_list, similar_indices =  get_all_similar_and_dissimilar_subsets(diet_data, diet_otu, PC=True)
+subsets_list, similar_indices = get_all_similar_and_dissimilar_subsets(diet_data, diet_otu, PC=True)
 
 import os
 os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA_project')
@@ -92,18 +92,16 @@ IDOA_dissimilar_diet = []
 D_O_container_similar = []
 D_O_container_dissimilar = []
 for sample, subsets in zip(diet_otu, subsets_list):
-    IDOA_object_similar_diet = IDOA(subsets[0], sample, min_overlap=0.9,
-                                    max_overlap=1, zero_overlap=0, identical=False, min_num_points=0,
+    IDOA_object_similar_diet = IDOA(subsets[0], sample, min_overlap=0.9, max_overlap=1, min_num_points=0,
                                     percentage=40, method='percentage')
     IDOA_similar_diet.append(IDOA_object_similar_diet.calc_idoa_vector())
     D_O_container_similar.append(
-        IDOA_object_similar_diet.dissimilarity_overlap_container_no_constraint)
-    IDOA_object_dissimilar_diet = IDOA(subsets[1], sample, min_overlap=0.9,
-                                    max_overlap=1, zero_overlap=0, identical=False, min_num_points=0,
+        IDOA_object_similar_diet.d_o_list_unconst)
+    IDOA_object_dissimilar_diet = IDOA(subsets[1], sample, min_overlap=0.9, max_overlap=1, min_num_points=0,
                                     percentage=40, method='percentage')
     IDOA_dissimilar_diet.append(IDOA_object_dissimilar_diet.calc_idoa_vector())
     D_O_container_dissimilar.append(
-        IDOA_object_dissimilar_diet.dissimilarity_overlap_container_no_constraint)
+        IDOA_object_dissimilar_diet.d_o_list_unconst)
     
 # Delete Outlier
 del IDOA_similar_diet[-6]
@@ -149,18 +147,23 @@ fig.update_layout(
     yaxis_title="Dissimilarity",
     xaxis=dict(
         showgrid=False,  
-        zeroline=False,  
+        zeroline=False,
+        showline=True,
+        linecolor='black',
         range=[0.15, 0.75]  
     ),
     yaxis=dict(
         showgrid=False, 
-        zeroline=False, 
+        zeroline=False,
+        showline=True,
+        linecolor='black',
         range=[0.15, 0.75]   
     ),
     font=dict(
         size=18
     ),
-    showlegend=False  
+    showlegend=False,
+    plot_bgcolor='white'
 )
 fig.update_xaxes(title_font=dict(size=24, family="Computer Modern"))
 fig.update_yaxes(title_font=dict(size=24, family="Computer Modern"))
@@ -183,6 +186,8 @@ layout = go.Layout(
         title="IDOA w.r.t similar diet",
         showgrid=False,
         zeroline=True,
+        showline=True,
+        linecolor='black',
         zerolinecolor="black",
         range=[-0.9, 0.9],
         titlefont=dict(size=24, family="Computer Modern"),
@@ -192,13 +197,16 @@ layout = go.Layout(
         showgrid=False,
         zeroline=True,
         zerolinecolor="black",
+        showline=True,
+        linecolor='black',
         range=[-0.9, 0.9],
         titlefont=dict(size=24, family="Computer Modern"),
     ),
     font=dict(
         family="Arial, monospace",
         size=18,
-    )
+    ),
+    plot_bgcolor='white'
 )
 
 # Create figure
@@ -247,16 +255,21 @@ fig.update_layout(
     yaxis_title="PC2",  
     xaxis=dict(
         showgrid=False,  
-        zeroline=False  
+        zeroline=False,
+        showline=True,
+        linecolor='black'
     ),
     yaxis=dict(
         showgrid=False,  
-        zeroline=False 
+        zeroline=False,
+        showline=True,
+        linecolor='black'
     ),
     font=dict(
         family="Arial, monospace", 
         size=18
-    )
+    ),
+    plot_bgcolor='white'
 )
 
 fig.update_xaxes(title_font=dict(size=24, family="Computer Modern"))

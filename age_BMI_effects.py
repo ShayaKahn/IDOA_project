@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 from sklearn.manifold import MDS
 from sklearn.metrics import pairwise_distances
 import os
-os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA\HMP_cohorts')
+os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA')
 
 # Normalization function.
 
@@ -19,17 +19,21 @@ def normalize_cohort(cohort):
         cohort_normalized = cohort / np.linalg.norm(cohort, ord=1, axis=1, keepdims=True)
     return cohort_normalized
 
+os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA\HMP_cohorts')
+
 Stool = pd.read_excel('Stool.xlsx', header=None)
 
-Stool_cohort = Stool.values
 Stool_cohort = Stool.T
 Stool_cohort = Stool_cohort.to_numpy()
 Stool_cohort = normalize_cohort(Stool_cohort)
 non_zero_columns = np.sum(Stool_cohort, axis=0) != 0
 Stool_cohort = Stool_cohort[:, non_zero_columns]
+
 def remove_low_mean_columns(arr):
     return arr[:, np.mean(arr, axis=0) >= 0.0001]
 Stool_cohort = remove_low_mean_columns(Stool_cohort)
+
+os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA')
 
 Age_vals = pd.read_excel('Age_stool.xlsx', header=None)
 Age_vals = Age_vals.values.T[0]
@@ -68,37 +72,26 @@ med_age_stool = filter_matrix_by_vector(Stool_cohort, Age_vals, (25, 31))
 lar_age_stool = filter_matrix_by_vector(Stool_cohort, Age_vals, (32, 40))
 
 # IDOA objects.
-
-IDOA_object_low_low = IDOA(low_age_stool, low_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=True, min_num_points=0,
+IDOA_object_low_low = IDOA(low_age_stool, low_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_low_med = IDOA(low_age_stool, med_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_low_med = IDOA(low_age_stool, med_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_low_lar = IDOA(low_age_stool, lar_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_low_lar = IDOA(low_age_stool, lar_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_med_low = IDOA(med_age_stool, low_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_med_low = IDOA(med_age_stool, low_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_med_med = IDOA(med_age_stool, med_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=True, min_num_points=0,
+IDOA_object_med_med = IDOA(med_age_stool, med_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_med_lar = IDOA(med_age_stool, lar_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_med_lar = IDOA(med_age_stool, lar_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_lar_low = IDOA(lar_age_stool, low_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_lar_low = IDOA(lar_age_stool, low_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_lar_med = IDOA(lar_age_stool, med_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_lar_med = IDOA(lar_age_stool, med_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
-IDOA_object_lar_lar = IDOA(lar_age_stool, lar_age_stool, min_overlap=0.5, max_overlap=1,
-                           zero_overlap=0, identical=True, min_num_points=0,
+IDOA_object_lar_lar = IDOA(lar_age_stool, lar_age_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                            percentage=50, method='percentage')
 
 # IDOA values calculations.
-
 IDOA_vector_low_low = IDOA_object_low_low.calc_idoa_vector()
 IDOA_vector_low_med = IDOA_object_low_med.calc_idoa_vector()
 IDOA_vector_low_lar = IDOA_object_low_lar.calc_idoa_vector()
@@ -110,27 +103,20 @@ IDOA_vector_lar_med = IDOA_object_lar_med.calc_idoa_vector()
 IDOA_vector_lar_lar = IDOA_object_lar_lar.calc_idoa_vector()
 
 # Divide to BMI groups.
-
 low_bmi_stool = filter_matrix_by_vector(Stool_cohort, BMI_vals, (19, 26))
 lar_bmi_stool = filter_matrix_by_vector(Stool_cohort, BMI_vals, (27, 34))
 
 # IDOA objects.
-
-IDOA_object_low_low_bmi = IDOA(low_bmi_stool, low_bmi_stool, min_overlap=0.5, max_overlap=1,
-                               zero_overlap=0, identical=True, min_num_points=0,
+IDOA_object_low_low_bmi = IDOA(low_bmi_stool, low_bmi_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                                percentage=50, method='percentage')
-IDOA_object_low_lar_bmi = IDOA(low_bmi_stool, lar_bmi_stool, min_overlap=0.5, max_overlap=1,
-                               zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_low_lar_bmi = IDOA(low_bmi_stool, lar_bmi_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                                percentage=50, method='percentage')
-IDOA_object_lar_low_bmi = IDOA(lar_bmi_stool, low_bmi_stool, min_overlap=0.5, max_overlap=1,
-                               zero_overlap=0, identical=False, min_num_points=0,
+IDOA_object_lar_low_bmi = IDOA(lar_bmi_stool, low_bmi_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                                percentage=50, method='percentage')
-IDOA_object_lar_lar_bmi = IDOA(lar_bmi_stool, lar_bmi_stool, min_overlap=0.5, max_overlap=1,
-                               zero_overlap=0, identical=True, min_num_points=0,
+IDOA_object_lar_lar_bmi = IDOA(lar_bmi_stool, lar_bmi_stool, min_overlap=0.5, max_overlap=1, min_num_points=0,
                                percentage=50, method='percentage')
 
 # IDOA values calculations.
-
 IDOA_vector_low_low_bmi = IDOA_object_low_low_bmi.calc_idoa_vector()
 IDOA_vector_low_lar_bmi = IDOA_object_low_lar_bmi.calc_idoa_vector()
 IDOA_vector_lar_low_bmi = IDOA_object_lar_low_bmi.calc_idoa_vector()
@@ -174,6 +160,8 @@ hist_idoa_low_lar = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='IDOA w.r.t Age from 18 to 24 cohort',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -181,6 +169,8 @@ layout = go.Layout(
     ),
     yaxis=dict(
         title='Density',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -189,7 +179,8 @@ layout = go.Layout(
     barmode='overlay',
     legend=dict(x=0, y=1, font=dict(size=25, family="Computer Modern")),
     width=900,
-    height=900
+    height=900,
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[hist_idoa_low_low, hist_idoa_low_med, hist_idoa_low_lar], layout=layout)
@@ -231,6 +222,8 @@ histogram_trace_med_lar = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='IDOA w.r.t Age from 25 to 31 cohort',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -238,6 +231,8 @@ layout = go.Layout(
     ),
     yaxis=dict(
         title='Density',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -246,7 +241,8 @@ layout = go.Layout(
     barmode='overlay',
     legend=dict(x=0, y=1, font=dict(size=25, family="Computer Modern")),
     width=900,
-    height=900
+    height=900,
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_med_low, histogram_trace_med_med,
@@ -289,6 +285,8 @@ histogram_trace_lar_lar = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='IDOA w.r.t Age from 32 to 40 cohort',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -296,6 +294,8 @@ layout = go.Layout(
     ),
     yaxis=dict(
         title='Density',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -304,7 +304,8 @@ layout = go.Layout(
     barmode='overlay',
     legend=dict(x=0, y=1, font=dict(size=25, family="Computer Modern")),
     width=900,
-    height=900
+    height=900,
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_lar_low, histogram_trace_lar_med,
@@ -339,6 +340,8 @@ histogram_trace_low_lar = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='IDOA w.r.t BMI from 19 to 26 cohort',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -346,6 +349,8 @@ layout = go.Layout(
     ),
     yaxis=dict(
         title='Density',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -354,7 +359,8 @@ layout = go.Layout(
     barmode='overlay',
     legend=dict(x=0, y=1, font=dict(size=25, family="Computer Modern")),
     width=900,
-    height=900
+    height=900,
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_low_low, histogram_trace_low_lar], layout=layout)
@@ -388,6 +394,8 @@ histogram_trace_lar_lar = go.Histogram(
 layout = go.Layout(
     xaxis=dict(
         title='IDOA w.r.t BMI from 27 to 34 cohort',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -395,6 +403,8 @@ layout = go.Layout(
     ),
     yaxis=dict(
         title='Density',
+        linecolor='black',
+        showline=True,
         zeroline=False,
         showgrid=False,
         titlefont=dict(family="Computer Modern", size=30),
@@ -403,7 +413,8 @@ layout = go.Layout(
     barmode='overlay',
     legend=dict(x=0, y=1, font=dict(size=25, family="Computer Modern")),
     width=900,
-    height=900
+    height=900,
+    plot_bgcolor='white'
 )
 
 fig = go.Figure(data=[histogram_trace_lar_low, histogram_trace_lar_lar], layout=layout)
@@ -445,18 +456,20 @@ fig_pcoa.add_trace(go.Scatter(x=df[df['color'] == 'red']['PCoA 1'],
 # Update layout
 fig_pcoa.update_layout(
     xaxis=dict(
-        showline=False,
+        linecolor='black',
+        showline=True,
         showgrid=False,
         showticklabels=True,
         zeroline=False,
-        title_text='PCoA 1'
+        title_text='PCo1'
     ),
     yaxis=dict(
-        showline=False,
+        linecolor='black',
+        showline=True,
         showgrid=False,
         showticklabels=True,
         zeroline=False,
-        title_text='PCoA 2'
+        title_text='PCo2'
     ),
     font=dict(
         family="latex",
@@ -465,9 +478,10 @@ fig_pcoa.update_layout(
     ),
     width=800,
     height=800,
+    plot_bgcolor='white',
     showlegend=True, 
     legend=dict(
-        x=0,  
+        x=0.05,
         y=1,  
         traceorder="normal",
         orientation="v",
@@ -525,18 +539,20 @@ fig_pcoa.add_trace(go.Scatter(x=df[df['color'] == 'black']['PCoA 1'],
 # Update layout
 fig_pcoa.update_layout(
     xaxis=dict(
-        showline=False,
+        linecolor='black',
+        showline=True,
         showgrid=False,
         showticklabels=True,
         zeroline=False,
-        title_text='PCoA 1'
+        title_text='PCo1'
     ),
     yaxis=dict(
-        showline=False,
+        linecolor='black',
+        showline=True,
         showgrid=False,
         showticklabels=True,
         zeroline=False,
-        title_text='PCoA 2'
+        title_text='PCo2'
     ),
     font=dict(
         family="latex",
@@ -545,9 +561,10 @@ fig_pcoa.update_layout(
     ),
     width=800,
     height=800,
+    plot_bgcolor='white',
     showlegend=True, 
     legend=dict(
-        x=0,  
+        x=0.05,
         y=1,  
         traceorder="normal",
         orientation="v",
@@ -560,4 +577,3 @@ fig_pcoa.update_layout(
 )
 
 fig_pcoa.show()
-
