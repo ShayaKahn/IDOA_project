@@ -73,7 +73,7 @@ class Glv:
         """
         This function updates the final abundances, rows are the species and columns represent the samples.
         """
-        # event definitions
+        # event function definitions
         event_fun = event
         event_fun.terminal = True
         event_fun.direction = 1
