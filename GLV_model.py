@@ -15,8 +15,8 @@ class Glv:
         :param delta: This parameter is responsible for the stop condition at the steady state.
         :param r: growth rate vector of shape (,n_species).
         :param s: logistic growth term vector of size (,n_species).
-        :param A: interaction matrix of shape (n_species, n_species).
-        :param Y: set of initial conditions for each sample. If n_samples=1, the shape is (,n_species).
+        :param interaction_matrix: interaction matrix of shape (n_species, n_species).
+        :param initial_cond: set of initial conditions for each sample. If n_samples=1, the shape is (,n_species).
         If n_samples=m for m!=1 so the shape is (n_species, n_samples)
         :param final_time: the final time of the integration.
         :param max_step: maximal allowed step size.
@@ -73,9 +73,14 @@ class Glv:
         """
         This function updates the final abundances, rows are the species and columns represent the samples.
         """
+        # event definitions
+        event_fun = event
+        event_fun.terminal = True
+        event_fun.direction = 1
+
         # Set the parameters to the functions f and event.
-        f_with_params = lambda t, x: f(t, x, self.r.view(), self.s.view(), self.A.view(), self.delta)
-        event_with_params = lambda t, x: event(t, x, self.r.view(), self.s.view(), self.A.view(), self.delta)
+        f_with_params = lambda t, x: f(t, x, self.r, self.s, self.A, self.delta)
+        event_with_params = lambda t, x: event_fun(t, x, self.r, self.s, self.A, self.delta)
 
         if self.smp > 1:  # Solution for cohort.
             for m in range(self.smp):
@@ -84,14 +89,11 @@ class Glv:
                 sol = solve_ivp(f_with_params, (0, self.final_time), self.Y[:][m], max_step=self.max_step,
                                 events=event_with_params)
 
-                # Get the index at which the event occurred.
-                event_idx = None
-                if len(sol.t_events[0]) > 0:
-                    event_time = sol.t_events[0][0]
-                    event_idx = np.argmin(np.abs(sol.t - event_time))
+                if np.size(sol.t_events[0]) == 1:
+                    self.Final_abundances[:, m] = sol.y[:, -1]
+                else:
+                    raise RuntimeError("The expected event did not occur during the integration.")
 
-                # Save the solution up to the event time.
-                self.Final_abundances[:, m] = sol.y[:, event_idx] if event_idx is not None else sol.y[:, -1]
             final_abundances = self.Final_abundances
             return self.normalize_cohort(final_abundances.T)
 
@@ -99,11 +101,11 @@ class Glv:
             sol = solve_ivp(f, (0, self.final_time),
                             self.Y[:], max_step=self.max_step, events=event)
 
-            # Get the index at which the event occurred
-            event_idx = int(sol.t_events[0][0]) if len(sol.t_events[0]) > 0 else None
+            if np.size(sol.t_events[0]) == 1:
+                self.Final_abundances_single_sample[:] = sol.y[:, -1]
+            else:
+                raise RuntimeError("The expected event did not occur during the integration.")
 
-            # Save the solution up to the event time
-            self.Final_abundances_single_sample[:] = sol.y[:, event_idx] if event_idx is not None else sol.y[:, -1]
         final_abundances = self.Final_abundances_single_sample
         return self.normalize_cohort(final_abundances)
 

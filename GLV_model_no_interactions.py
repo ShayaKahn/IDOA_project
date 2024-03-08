@@ -6,7 +6,7 @@ import plotly.graph_objs as go
 # Variables
 time_span = 200
 max_step = 0.5
-delta = 0.00001
+delta = 0.3
 num_samples = 100
 num_species = 100
 r = np.random.uniform(0, 1, num_species)
