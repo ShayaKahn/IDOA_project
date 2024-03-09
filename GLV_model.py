@@ -73,14 +73,14 @@ class Glv:
         """
         This function updates the final abundances, rows are the species and columns represent the samples.
         """
-        # event function definitions
-        event_fun = event
-        event_fun.terminal = True
-        event_fun.direction = 1
 
         # Set the parameters to the functions f and event.
         f_with_params = lambda t, x: f(t, x, self.r, self.s, self.A, self.delta)
-        event_with_params = lambda t, x: event_fun(t, x, self.r, self.s, self.A, self.delta)
+        event_with_params = lambda t, x: event(t, x, self.r, self.s, self.A, self.delta)
+
+        # event definitions
+        event_with_params.terminal = True
+        event_with_params.direction = -1
 
         if self.smp > 1:  # Solution for cohort.
             for m in range(self.smp):
