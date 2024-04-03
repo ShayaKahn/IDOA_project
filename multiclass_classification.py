@@ -31,7 +31,7 @@ glv_1 = Glv(n_samples=num_samples, n_species=num_species, delta=delta, r=r, s=s,
 glv_2 = Glv(n_samples=num_samples, n_species=num_species, delta=delta, r=r, s=s,
             interaction_matrix=interaction_matrix_2, initial_cond=Y2, final_time=time_span, max_step=max_step)
 
-# Solve the models
+# Solve the models.
 glv_0_results = glv_0.solve()
 glv_1_results = glv_1.solve()
 glv_2_results = glv_2.solve()
