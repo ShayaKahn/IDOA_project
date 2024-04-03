@@ -17,7 +17,7 @@ class Glv:
         :param s: logistic growth term vector of size (,n_species).
         :param interaction_matrix: interaction matrix of shape (n_species, n_species).
         :param initial_cond: set of initial conditions for each sample. If n_samples=1, the shape is (,n_species).
-        If n_samples=m for m!=1 so the shape is (n_species, n_samples)
+        If n_samples=m for m!=1 so the shape is (n_samples, n_species)
         :param final_time: the final time of the integration.
         :param max_step: maximal allowed step size.
         """
@@ -86,7 +86,7 @@ class Glv:
             for m in range(self.smp):
                 print(m)
                 # solve GLV up to time span.
-                sol = solve_ivp(f_with_params, (0, self.final_time), self.Y[:][m], max_step=self.max_step,
+                sol = solve_ivp(f_with_params, (0, self.final_time), self.Y[m, :], max_step=self.max_step,
                                 events=event_with_params)
 
                 if np.size(sol.t_events[0]) == 1:
