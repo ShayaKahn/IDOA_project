@@ -60,25 +60,28 @@ IDOA_object_low_interactions = IDOA(glv_ref_results, glv_low_interactions_result
 IDOA_vector_low_interactions = IDOA_object_low_interactions.calc_idoa_vector()
 
 # Create Histogram traces for each dataset
-trace1 = go.Histogram(x=IDOA_vector_no_interactions, name='No interactions (ε=0)', histnorm='probability density', nbinsx=20,
+trace1 = go.Histogram(x=IDOA_vector_no_interactions, name='No interactions (ε=0)', histnorm='probability density',
+                      nbinsx=20,
                       opacity=0.7)
-trace2 = go.Histogram(x=IDOA_vector_low_interactions, name='Weak interactions (ε=0.5)', histnorm='probability density', nbinsx=20,
+trace2 = go.Histogram(x=IDOA_vector_low_interactions, name='Weak interactions (ε=0.5)', histnorm='probability density',
+                      nbinsx=20,
                       opacity=0.7)
-trace3 = go.Histogram(x=IDOA_vector_interactions, name='Strong interactions (ε=1)', histnorm='probability density', nbinsx=20,
+trace3 = go.Histogram(x=IDOA_vector_interactions, name='Strong interactions (ε=1)', histnorm='probability density',
+                      nbinsx=20,
                       opacity=0.7)
 
 
 layout = go.Layout(
-    xaxis=dict(title='IDOA', tickfont=dict(family='latex', size=30)),
-    yaxis=dict(title='Probability Density', tickfont=dict(family='latex', size=30), showticklabels=False),
+    xaxis=dict(title='IDOA', tickfont=dict(family='Arial', size=30)),
+    yaxis=dict(title='Probability Density', tickfont=dict(family='Arial', size=30), showticklabels=False),
     barmode='overlay',
-    xaxis_title_font=dict(family='latex', size=40),
-    yaxis_title_font=dict(family='latex', size=40),
+    xaxis_title_font=dict(family='Arial', size=40),
+    yaxis_title_font=dict(family='Arial', size=40),
     width=1000,
     height=1000,
     xaxis_showgrid=False,
     yaxis_showgrid=False,
-    legend=dict(x=0, y=1, font=dict(family='latex', size=30)),
+    legend=dict(x=0, y=1, font=dict(family='Arial', size=30)),
     paper_bgcolor='white',
     plot_bgcolor='white',
 )
@@ -110,16 +113,16 @@ trace3 = go.Histogram(x=BC_vector_interactions, name='Strong interactions (ε=1)
 
 
 layout = go.Layout(
-    xaxis=dict(title='Mean Bray Curtis', tickfont=dict(family='latex', size=30)),
-    yaxis=dict(title='Probability Density', tickfont=dict(family='latex', size=30), showticklabels=False),
+    xaxis=dict(title='Mean Bray Curtis', tickfont=dict(family='Arial', size=30)),
+    yaxis=dict(title='Probability Density', tickfont=dict(family='Arial', size=30), showticklabels=False),
     barmode='overlay',
-    xaxis_title_font=dict(family='latex', size=40),
-    yaxis_title_font=dict(family='latex', size=40),
+    xaxis_title_font=dict(family='Arial', size=40),
+    yaxis_title_font=dict(family='Arial', size=40),
     width=1000,
     height=1000,
     xaxis_showgrid=False,
     yaxis_showgrid=False,
-    legend=dict(x=0, y=1, font=dict(family='latex', size=30)),
+    legend=dict(x=0, y=1, font=dict(family='Arial', size=30)),
     paper_bgcolor='white',
     plot_bgcolor='white',
 )

@@ -5,9 +5,10 @@ from DOC import DOC
 from Shuffle_cohort import ShuffledCohort
 import pandas as pd
 import numpy as np
+from sklearn.manifold import MDS
+from sklearn.metrics import pairwise_distances
 
 # Function that organizes a SparseDOSSA2 cohort.
-
 def create_fitted_cohort(cohort, binary_vector):
     """
     cohort: numpy array of shape (n_features, n_samples), represent the otu matrix.
@@ -21,7 +22,6 @@ def create_fitted_cohort(cohort, binary_vector):
     return fitted_cohort
 
 # Normalization function.
-
 def normalize_cohort(cohort):
     """
     cohort: numpy matrix, samples in rows
@@ -32,57 +32,48 @@ def normalize_cohort(cohort):
         cohort_normalized = cohort / np.linalg.norm(cohort, ord=1, axis=1, keepdims=True)
     return cohort_normalized
 
-os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA\Tongue_data')
+os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA_project\HMP_cohorts')
 
 # Filtering and normalization, the cohort is normalized so the samples (rows) sum up to one.
 # Species that are non-zero at only one sample or less and species with less than 0.05% of the total abundance are
 # filtered.
-
-Stool = pd.read_excel('Tongue_data.xlsx', header=None)
-Stool_cohort = Stool.values
+Stool = pd.read_excel('Saliva.xlsx', header=None)
 Stool_cohort = Stool.T
 Stool_cohort = Stool_cohort.to_numpy()
 Stool_cohort = normalize_cohort(Stool_cohort)
 non_zero_columns = np.sum(Stool_cohort, axis=0) != 0
 Stool_cohort = Stool_cohort[:, non_zero_columns]
+
 def remove_low_mean_columns(arr):
     return arr[:, np.mean(arr, axis=0) >= 0.0005]
 Stool_cohort = remove_low_mean_columns(Stool_cohort)
 Stool_cohort = normalize_cohort(Stool_cohort)
 
 # Creating a shuffled cohort using ShuffledCohort class.
-
 stool_cohort_shuffled_object = ShuffledCohort(Stool_cohort)
 stool_cohort_shuffled = stool_cohort_shuffled_object.create_shuffled_cohort()
 
-os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA')
+os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA_project\Simulations data')
 
 # Load MIDAS stool cohort.
-
-MIDAS_stool = pd.read_excel('Midas_tongue.xlsx', header=None)
+MIDAS_stool = pd.read_excel('Midas_saliva.xlsx', header=None)
 MIDAS_stool_cohort = MIDAS_stool.values
 
-os.chdir(r'C:\Users\shaya\OneDrive\Desktop\IDOA')
-
 # Load SparseDOSSA2 stool cohort and filtered species binary vector.
-
-SparseDOSSA2_stool = pd.read_excel('SparseDOSSA2_simulated_samples_Tongue.xlsx', header=None)
+SparseDOSSA2_stool = pd.read_excel('SparseDOSSA2_simulated_samples_saliva.xlsx', header=None)
 SparseDOSSA2_stool = SparseDOSSA2_stool.values
-SparseDOSSA2_stool_filtered_species = pd.read_excel('SparseDOSSA2_filtered_species_binary_Tongue.xlsx',
+SparseDOSSA2_stool_filtered_species = pd.read_excel('SparseDOSSA2_filtered_species_binary_saliva.xlsx',
                                                     header=None)
 SparseDOSSA2_stool_filtered_species = SparseDOSSA2_stool_filtered_species.values
 SparseDOSSA2_stool_filtered_species = SparseDOSSA2_stool_filtered_species.flatten()
-
 SparseDOSSA2_stool_cohort = create_fitted_cohort(SparseDOSSA2_stool, 
                                                  SparseDOSSA2_stool_filtered_species)
-
 SparseDOSSA2_stool_cohort = SparseDOSSA2_stool_cohort.T
 
 # Set the SparseDOSSA2 cohort to be the same size as the Stool_cohort.
 SparseDOSSA2_stool_cohort_part = SparseDOSSA2_stool_cohort[0:Stool_cohort.shape[0], :]
 
 # Calculate the DOC for the different cohorts.
-
 DOC_Stool = DOC(Stool_cohort)
 doc_mat_Stool = DOC_Stool.calc_doc()
 o_stool = doc_mat_Stool[0, :]
@@ -107,21 +98,17 @@ import plotly.graph_objects as go
 import statsmodels.api as sm
 
 # Plot the DOC for the different cohorts.
-
 def scatterplot_plotly(x, y, xlabel="Overlap", ylabel="Dissimilarity", title="DOC", size=2,
                        frac=0.1, x_lower_limit=None, x_upper_limit=None):
     # Fit the LOWESS curve
     lowess_result = sm.nonparametric.lowess(y, x, frac=frac)
     lowess_x = lowess_result[:, 0]
     lowess_y = lowess_result[:, 1]
-    
-    # Create scatter plot
+
     fig = go.Figure()
-    
-    # Add the scatter plot data
+
     fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name='Data', marker=dict(size=size)))
-    
-    # Add the LOWESS curve with increased width
+
     fig.add_trace(go.Scatter(x=lowess_x, y=lowess_y, mode='lines', name='LOWESS',
                              line=dict(color='red', width=3)))
     
@@ -135,7 +122,7 @@ def scatterplot_plotly(x, y, xlabel="Overlap", ylabel="Dissimilarity", title="DO
             'linewidth': 1,  
             'title_font': {
                 'size': 30,
-                'family': "latex"
+                'family': "Arial"
             },
             'range': [x_lower_limit,
                       x_upper_limit] if x_lower_limit is not None and x_upper_limit is not None else None
@@ -147,7 +134,7 @@ def scatterplot_plotly(x, y, xlabel="Overlap", ylabel="Dissimilarity", title="DO
             'linewidth': 1,  
             'title_font': {
                 'size': 30,
-                'family': "latex"
+                'family': "Arial"
             }
         },
         template="plotly_dark",
@@ -165,7 +152,6 @@ scatterplot_plotly(o_stool_shuffled, d_stool_shuffled, x_lower_limit=0, x_upper_
 
 # Plot the histograms of the Dissimilarity for the different cohorts.
 num_bins = 10
-
 bin_size = (max(max(d_stool), max(d_stool_shuffled)) - min(min(d_stool), min(
     d_stool_shuffled))) / num_bins
 
@@ -207,7 +193,7 @@ histogram_trace_shuffled = go.Histogram(
 
 layout = go.Layout(
     xaxis={
-        'title': {"text": 'Dissimilarity', "font": {"size": 30, "family": "Computer Modern"}},
+        'title': {"text": 'Dissimilarity', "font": {"size": 30, "family": "Arial"}},
         'zeroline': False,
         'showgrid': False,
         "showline": True,
@@ -216,7 +202,7 @@ layout = go.Layout(
         'tickfont': dict(size=20),
     },
     yaxis={
-        'title': {"text": 'Density', 'font': {'size': 30, "family": "Computer Modern"}},
+        'title': {"text": 'Density', 'font': {'size': 30, "family": "Arial"}},
         'zeroline': False,
         'showgrid': False,
         "showline": True,
@@ -224,7 +210,7 @@ layout = go.Layout(
         "linewidth": 2,
         'tickfont': dict(size=20),
     },
-    legend=dict(x=0.05, y=1, font=dict(size=25, family="latex")),
+    legend=dict(x=0.05, y=1, font=dict(size=25, family="Arial")),
     width=700,
     height=700,
     barmode='overlay',
@@ -237,9 +223,7 @@ fig = go.Figure(data=[histogram_trace_real, histogram_trace_MIDAS, histogram_tra
 fig.show()
 
 # Plot the histograms of the Overlap for the different cohorts.
-
 num_bins = 10
-
 bin_size = (max(max(o_stool), max(o_stool_shuffled)) - min(min(o_stool), min(
     o_stool_shuffled))) / num_bins
 
@@ -281,7 +265,7 @@ histogram_trace_shuffled = go.Histogram(
 
 layout = go.Layout(
     xaxis={
-        'title': {"text": 'Overlap', "font": {"size": 30, "family": "Computer Modern"}},
+        'title': {"text": 'Overlap', "font": {"size": 30, "family": "Arial"}},
         'zeroline': False,
         'showgrid': False,
         "showline": True,
@@ -290,7 +274,7 @@ layout = go.Layout(
         'tickfont': dict(size=20),
     },
     yaxis={
-        'title': {"text": 'Density', 'font': {'size': 30, "family": "Computer Modern"}},
+        'title': {"text": 'Density', 'font': {'size': 30, "family": "Arial"}},
         'zeroline': False,
         'showgrid': False,
         "showline": True,
@@ -298,7 +282,7 @@ layout = go.Layout(
         "linewidth": 2,
         'tickfont': dict(size=20),
     },
-    legend=dict(x=0, y=1, font=dict(size=25, family="latex")),
+    legend=dict(x=0, y=1, font=dict(size=25, family="Arial")),
     width=700,
     height=700,
     barmode='overlay',
@@ -310,11 +294,9 @@ fig = go.Figure(data=[histogram_trace_real, histogram_trace_MIDAS, histogram_tra
 
 fig.show()
 
-from sklearn.manifold import MDS
-from sklearn.metrics import pairwise_distances
+
 
 # Plot PCoA of all groups
-
 MIDAS_stool_cohort = MIDAS_stool.values
 
 combined_data = np.vstack([Stool_cohort, MIDAS_stool_cohort, SparseDOSSA2_stool_cohort_part, 
@@ -337,10 +319,8 @@ point_colors[Stool_cohort.shape[0]:Stool_cohort.shape[0] * 2] = ['chartreuse'] *
 point_colors[Stool_cohort.shape[0] * 2:Stool_cohort.shape[0] * 3] = ['red'] * Stool_cohort.shape[0]
 df['color'] = point_colors
 
-# Create Plotly figure
 fig_pcoa = go.Figure()
 
-# Add traces for each color group and specify the label
 fig_pcoa.add_trace(go.Scatter(x=df[df['color'] == 'blue']['PCoA 1'], 
                               y=df[df['color'] == 'blue']['PCoA 2'],
                               mode='markers',
@@ -396,7 +376,7 @@ fig_pcoa.update_layout(
         )
     ),
     font=dict(
-        family="latex",
+        family="Arial",
         size=18,
         color="black"
     ),
@@ -409,7 +389,7 @@ fig_pcoa.update_layout(
         traceorder="normal",
         orientation="v",
         font=dict(
-            family="latex",
+            family="Arial",
             size=25,  
             color="black")),
     plot_bgcolor='white'
@@ -418,7 +398,6 @@ fig_pcoa.update_layout(
 fig_pcoa.show()
 
 # Clculate IDOA for all groups
-
 IDOA_object_real = IDOA(Stool_cohort, Stool_cohort, min_overlap=0.9, max_overlap=1, min_num_points=0,
                         percentage=50, method='percentage')
 IDOA_vector_real = IDOA_object_real.calc_idoa_vector()
@@ -433,9 +412,7 @@ IDOA_object_SparseDOSSA2 = IDOA(Stool_cohort, SparseDOSSA2_stool_cohort_part,
 IDOA_vector_SparseDOSSA2 = IDOA_object_SparseDOSSA2.calc_idoa_vector()
 
 # Plot IDOA histograms for all groups
-
 num_bins = 10
-
 bin_size = (max(max(IDOA_vector_real), max(IDOA_vector_shuffled)) - min(min(IDOA_vector_real), min(
     IDOA_vector_shuffled))) / num_bins
 
@@ -477,7 +454,7 @@ histogram_trace_shuffled = go.Histogram(
 
 layout = go.Layout(
     xaxis={
-        'title': {"text": 'IDOA', "font": {"size": 30, "family": "Computer Modern"}},
+        'title': {"text": 'IDOA', "font": {"size": 30, "family": "Arial"}},
         'zeroline': False,
         'showgrid': False,
         "showline": True,
@@ -486,14 +463,14 @@ layout = go.Layout(
         'tickfont': dict(size=20),
     },
     yaxis={
-        'title': {"text": 'Density', 'font': {'size': 30, "family": "Computer Modern"}},
+        'title': {"text": 'Density', 'font': {'size': 30, "family": "Arial"}},
         'showgrid': False,
         "showline": True,
         "linecolor": "black",
         "linewidth": 2,
         'tickfont': dict(size=20)
     },
-    legend=dict(x=0, y=1, font=dict(size=25, family="latex")),
+    legend=dict(x=0, y=1, font=dict(size=25, family="Arial")),
     width=700,
     height=700,
     barmode='overlay',

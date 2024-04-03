@@ -1,6 +1,6 @@
 library(readxl)
 
-cohort <- read_excel("C:/Users/shaya/OneDrive/Desktop/IDOA/HMP_cohorts/Saliva.xlsx",
+cohort <- read_excel("C:/Users/shaya/OneDrive/Desktop/IDOA_project/HMP_cohorts/Saliva.xlsx",
                       col_names = FALSE)
 
 # Normalize cohort.
@@ -33,4 +33,4 @@ Midas_simulated_cohort <- MIDAS::Midas.sim(simulation, only.rel=T)
 Midas_simulated_cohort.rel_abund = Midas_simulated_cohort$sim_rel
 
 write_xlsx(as.data.frame(Midas_simulated_cohort.rel_abund),
-           path = "C:/Users/shaya/OneDrive/Desktop/IDOA/Midas_saliva.xlsx")
+           path = "C:/Users/shaya/OneDrive/Desktop/IDOA_project/Simulations data/Midas_saliva.xlsx")

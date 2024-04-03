@@ -6,7 +6,7 @@ library(readxl)
 library(dplyr)
 
 # Load data
-cohort <- read_excel("C:/Users/Shaya/Desktop/HMP_cohorts/Saliva.xlsx",
+cohort <- read_excel("C:/Users/Shaya/Desktop/IDOA_project/HMP_cohorts/Saliva.xlsx",
                      col_names = FALSE)
 
 col_sums <- colSums(cohort)
@@ -46,10 +46,10 @@ filtered_species_binary <- lapply(filtered_species, as.numeric)
 filtered_species_binary <- as.data.frame(filtered_species_binary)
 
 write_xlsx(simulated_samples,
-           path = "C:/Users/Shaya/Desktop/HMP_cohorts/SparseDOSSA2_simulated_samples_saliva.xlsx")
+           path = "C:/Users/Shaya/Desktop/IDOA_project/Simulations data/SparseDOSSA2_simulated_samples_saliva.xlsx")
 
 write_xlsx(filtered_species_binary,
-           path = "C:/Users/Shaya/Desktop/HMP_cohorts/SparseDOSSA2_filtered_species_binary_saliva.xlsx")
+           path = "C:/Users/Shaya/Desktop/IDOA_project/Simulations data/SparseDOSSA2_filtered_species_binary_saliva.xlsx")
 
 
 
