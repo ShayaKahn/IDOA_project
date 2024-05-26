@@ -21,6 +21,7 @@ def create_interaction_matrix(num_species, delta_int=0.01, p=0.25):
     mask = np.random.rand(num_species, num_species) < p
     # Apply the mask to the random numbers
     interaction_matrix[mask] = random_numbers[mask]
+    np.fill_diagonal(interaction_matrix, 0)
     return interaction_matrix
 
 def normalize_cohort(cohort):
